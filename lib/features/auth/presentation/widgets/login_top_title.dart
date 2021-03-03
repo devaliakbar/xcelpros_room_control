@@ -25,7 +25,7 @@ class LoginTopTitle extends StatelessWidget {
           NormalText(
             "Welcome",
             color: Colors.white,
-            size: FontSizes.fontSizeXXXXXL,
+            size: FontSizes.fontSizeXL,
             boldText: true,
           ),
           SizedBox(
@@ -34,7 +34,7 @@ class LoginTopTitle extends StatelessWidget {
           NormalText(
             "to Room Control",
             color: Colors.white,
-            size: FontSizes.fontSizeXXXXXL,
+            size: FontSizes.fontSizeXL,
           )
         ],
       ),

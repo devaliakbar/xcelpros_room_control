@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
           title,
           color: Colors.white,
           boldText: true,
-          size: FontSizes.fontSizeXXL,
+          size: FontSizes.fontSizeBML,
         ),
         onPressed: onClick,
       ),

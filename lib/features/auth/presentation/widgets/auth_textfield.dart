@@ -41,14 +41,14 @@ class AuthTextField extends StatelessWidget {
               validator: validator,
               cursorColor: AppColors.black,
               style: TextStyle(
-                  fontSize: FontSizes.fontSizeXL, color: AppColors.black),
+                  fontSize: FontSizes.fontSizeM, color: AppColors.black),
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(
                   horizontal: SizeConfig.widthWithoutSafeArea(1),
                 ),
-                errorStyle: TextStyle(fontSize: FontSizes.fontSizeL),
+                errorStyle: TextStyle(fontSize: FontSizes.fontSizeBSM),
                 hintStyle: TextStyle(
-                    fontSize: FontSizes.fontSizeXL, color: AppColors.grey),
+                    fontSize: FontSizes.fontSizeM, color: AppColors.grey),
                 hintText: label,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: AppColors.grey),

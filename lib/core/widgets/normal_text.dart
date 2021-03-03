@@ -31,7 +31,7 @@ class NormalText extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
           color: color == null ? AppColors.black : color,
-          fontSize: size == null ? FontSizes.fontSizeXL : size,
+          fontSize: size == null ? FontSizes.fontSizeM : size,
           fontWeight: boldText ? FontWeight.bold : FontWeight.normal),
       maxLines: truncate ? maxLine : null,
     );

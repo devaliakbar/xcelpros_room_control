@@ -43,7 +43,7 @@ class Loginform extends StatelessWidget {
               NormalText(
                 "Don't have an account?",
                 color: AppColors.grey,
-                size: FontSizes.fontSizeL,
+                size: FontSizes.fontSizeBSM,
               ),
               SizedBox(
                 width: 10,
@@ -54,7 +54,7 @@ class Loginform extends StatelessWidget {
                   "Sign UP".toUpperCase(),
                   boldText: true,
                   color: AppColors.secondary,
-                  size: FontSizes.fontSizeL,
+                  size: FontSizes.fontSizeBSM,
                 ),
               )
             ],
