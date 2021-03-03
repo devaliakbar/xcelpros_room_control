@@ -14,7 +14,18 @@ class SignUpPage extends StatefulWidget {
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
+  /// [_animationController] is for button
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationController =
+        AnimationController(duration: Duration(milliseconds: 200), vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -37,7 +48,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     children: [
                       SignUpTopTitle(),
                       Expanded(
-                        child: SignUpform(),
+                        child: SignUpform(
+                          animationController: animationController,
+                        ),
                       )
                     ],
                   ),

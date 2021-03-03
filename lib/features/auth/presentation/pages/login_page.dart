@@ -49,14 +49,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       Expanded(
                         child: Loginform(
                           animationController: animationController,
-                          onSignUp: () {
-                            animationController
-                                .reverse()
-                                .whenComplete(() async {
-                              await Navigator.pushNamed(
-                                  context, SignUpPage.routeName);
-                              animationController.forward();
-                            });
+                          onSignUp: () async {
+                            animationController.reverse();
+                            await Navigator.pushNamed(
+                                context, SignUpPage.routeName);
+                            animationController.forward();
                           },
                         ),
                       )

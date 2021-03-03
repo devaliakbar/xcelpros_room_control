@@ -33,13 +33,11 @@ class Loginform extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CustomAnimation(
-            animationController: animationController,
             customAnimationType: CustomAnimationType.topToBottom,
             widget:
                 AuthTextField(label: "Username", icon: Icons.person_outline),
           ),
           CustomAnimation(
-            animationController: animationController,
             customAnimationType: CustomAnimationType.topToBottom,
             widget: AuthTextField(
               label: "Password",
