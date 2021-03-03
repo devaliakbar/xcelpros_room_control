@@ -48,11 +48,14 @@ class Loginform extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              NormalText(
-                "Sign UP".toUpperCase(),
-                boldText: true,
-                color: AppColors.secondary,
-                size: FontSizes.fontSizeL,
+              InkWell(
+                onTap: () {},
+                child: NormalText(
+                  "Sign UP".toUpperCase(),
+                  boldText: true,
+                  color: AppColors.secondary,
+                  size: FontSizes.fontSizeL,
+                ),
               )
             ],
           )
