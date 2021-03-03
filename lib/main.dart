@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:room_control/core/route/route.dart';
 import 'package:room_control/features/auth/presentation/pages/login_page.dart';
 
 void main() async {
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: AppRouter.onGenerateRoute,
       home: LoginPage(),
     );
   }

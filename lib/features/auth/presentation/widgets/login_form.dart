@@ -3,6 +3,7 @@ import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/custom_button.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
+import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_textfield.dart';
 
 class Loginform extends StatelessWidget {
@@ -49,7 +50,9 @@ class Loginform extends StatelessWidget {
                 width: 10,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, SignUpPage.routeName);
+                },
                 child: NormalText(
                   "Sign UP".toUpperCase(),
                   boldText: true,
