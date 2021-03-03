@@ -34,7 +34,7 @@ class SignUpform extends StatelessWidget {
           ),
           AuthTextField(
             label: "Email",
-            icon: Icons.person_outline,
+            icon: Icons.email_outlined,
             inputType: TextInputType.emailAddress,
           ),
           Row(

@@ -54,13 +54,11 @@ class SignUpPage extends StatelessWidget {
                       child: Row(
                         children: [
                           Hero(
-                            tag: "back_icon",
-                            child: Icon(
-                              Icons.arrow_back_ios_rounded,
-                              color: Colors.white,
-                              size: IconSizes.iconSizeM,
-                            ),
-                          ),
+                              tag: "back_icon",
+                              child: Image.asset(
+                                AppImages.backIcon,
+                                height: IconSizes.iconSizeXS,
+                              )),
                           SizedBox(
                             width: SizeConfig.widthWithoutSafeArea(2),
                           ),
