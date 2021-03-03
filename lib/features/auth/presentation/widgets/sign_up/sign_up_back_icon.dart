@@ -41,6 +41,7 @@ class SignUpBackIcon extends StatelessWidget {
                       color: Colors.white,
                       boldText: true,
                       size: FontSizes.fontSizeBML,
+                      truncate: true,
                     ),
                   ),
                 )

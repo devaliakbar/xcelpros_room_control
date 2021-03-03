@@ -53,13 +53,13 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
                 ),
                 SignUpBackIcon(
                   onBackPressed: () async {
-                    setState(() {
-                      _expanded = false;
-                    });
+                    animationController.reverse().whenComplete(() {
+                      setState(() {
+                        _expanded = false;
+                      });
 
-                    animationController.reverse();
-                    await Future.delayed(Duration(milliseconds: 100));
-                    Navigator.pop(context);
+                      Navigator.pop(context);
+                    });
                   },
                 ),
                 Align(
@@ -89,12 +89,13 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   }
 
   Future<bool> _onWillPop() async {
-    setState(() {
-      _expanded = false;
-    });
+    animationController.reverse().whenComplete(() {
+      setState(() {
+        _expanded = false;
+      });
 
-    animationController.reverse();
-    await Future.delayed(Duration(milliseconds: 100));
-    return true;
+      Navigator.pop(context);
+    });
+    return false;
   }
 }

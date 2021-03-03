@@ -37,6 +37,7 @@ class LoginTopTitle extends StatelessWidget {
                     color: Colors.white,
                     size: FontSizes.fontSizeXL,
                     boldText: true,
+                    truncate: true,
                   ),
                 ),
               ),
