@@ -7,9 +7,14 @@ import 'package:room_control/features/auth/presentation/widgets/sign_up_back_ico
 import 'package:room_control/features/auth/presentation/widgets/sign_up_form.dart';
 import 'package:room_control/features/auth/presentation/widgets/sign_up_top_title.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   static const String routeName = '/signup_page';
 
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

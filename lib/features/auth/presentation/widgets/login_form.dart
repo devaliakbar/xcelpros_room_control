@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/custom_button.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
-import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_textfield.dart';
 
 class Loginform extends StatelessWidget {
+  final AnimationController animationController;
+  final Function onSignUp;
+
+  Loginform({@required this.animationController, @required this.onSignUp});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,40 +32,52 @@ class Loginform extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          AuthTextField(label: "Username", icon: Icons.person_outline),
-          AuthTextField(
-            label: "Password",
-            icon: Icons.lock_open_outlined,
-            obsecure: true,
+          CustomAnimation(
+            animationController: animationController,
+            customAnimationType: CustomAnimationType.topToBottom,
+            widget:
+                AuthTextField(label: "Username", icon: Icons.person_outline),
+          ),
+          CustomAnimation(
+            animationController: animationController,
+            customAnimationType: CustomAnimationType.topToBottom,
+            widget: AuthTextField(
+              label: "Password",
+              icon: Icons.lock_open_outlined,
+              obsecure: true,
+            ),
           ),
           CustomButton(
+            animationController: animationController,
             onClick: () {},
             title: "Sign In".toUpperCase(),
             width: double.infinity,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              NormalText(
-                "Don't have an account?",
-                color: AppColors.grey,
-                size: FontSizes.fontSizeBSM,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, SignUpPage.routeName);
-                },
-                child: NormalText(
-                  "Sign UP".toUpperCase(),
-                  boldText: true,
-                  color: AppColors.secondary,
+          CustomAnimation(
+            animationController: animationController,
+            customAnimationType: CustomAnimationType.bottomToTop,
+            widget: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                NormalText(
+                  "Don't have an account?",
+                  color: AppColors.grey,
                   size: FontSizes.fontSizeBSM,
                 ),
-              )
-            ],
+                SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: onSignUp,
+                  child: NormalText(
+                    "Sign UP".toUpperCase(),
+                    boldText: true,
+                    color: AppColors.secondary,
+                    size: FontSizes.fontSizeBSM,
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
