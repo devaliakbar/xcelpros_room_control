@@ -30,11 +30,17 @@ class SignUpBackIcon extends StatelessWidget {
                 SizedBox(
                   width: SizeConfig.widthWithoutSafeArea(2),
                 ),
-                NormalText(
-                  "Back",
-                  color: Colors.white,
-                  boldText: true,
-                  size: FontSizes.fontSizeBML,
+                Hero(
+                  tag: "welcome",
+                  child: Material(
+                    color: Colors.transparent,
+                    child: NormalText(
+                      "Back",
+                      color: Colors.white,
+                      boldText: true,
+                      size: FontSizes.fontSizeBML,
+                    ),
+                  ),
                 )
               ],
             ),
