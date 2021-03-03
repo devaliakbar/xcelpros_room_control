@@ -35,6 +35,7 @@ class SignUpform extends StatelessWidget {
             children: [
               CustomAnimation(
                 customAnimationType: CustomAnimationType.bottomToTop,
+                animationController: animationController,
                 widget: AuthTextField(
                     label: "Username", icon: Icons.person_outline),
               ),
@@ -43,6 +44,7 @@ class SignUpform extends StatelessWidget {
               ),
               CustomAnimation(
                 customAnimationType: CustomAnimationType.bottomToTop,
+                animationController: animationController,
                 widget: AuthTextField(
                   label: "Password",
                   icon: Icons.lock_open_outlined,
@@ -54,6 +56,7 @@ class SignUpform extends StatelessWidget {
               ),
               CustomAnimation(
                 customAnimationType: CustomAnimationType.bottomToTop,
+                animationController: animationController,
                 widget: AuthTextField(
                   label: "Email",
                   icon: Icons.email_outlined,
@@ -100,12 +103,16 @@ class SignUpform extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.heightWithoutSafeArea(4),
               ),
-              CustomButton(
-                animationController: animationController,
-                onClick: () {},
-                title: "Sign Up".toUpperCase(),
-                width: double.infinity,
-              ),
+              Hero(
+                tag: "button",
+                child: CustomButton(
+                  animationController: animationController,
+                  customAnimationType: CustomAnimationType.bottomToTop,
+                  onClick: () {},
+                  title: "Sign Up".toUpperCase(),
+                  width: double.infinity,
+                ),
+              )
             ],
           )
         ],

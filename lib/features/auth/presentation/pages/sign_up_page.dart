@@ -39,7 +39,13 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
               AuthMask(
                 height: SizeConfig.heightWithoutSafeArea(20),
               ),
-              SignUpBackIcon(),
+              SignUpBackIcon(
+                onBackPressed: () {
+                  animationController
+                      .reverse()
+                      .whenComplete(() => Navigator.pop(context));
+                },
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(

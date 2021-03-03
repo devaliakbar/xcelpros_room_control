@@ -34,22 +34,27 @@ class Loginform extends StatelessWidget {
         children: [
           CustomAnimation(
             customAnimationType: CustomAnimationType.topToBottom,
+            animationController: animationController,
             widget:
                 AuthTextField(label: "Username", icon: Icons.person_outline),
           ),
           CustomAnimation(
             customAnimationType: CustomAnimationType.topToBottom,
+            animationController: animationController,
             widget: AuthTextField(
               label: "Password",
               icon: Icons.lock_open_outlined,
               obsecure: true,
             ),
           ),
-          CustomButton(
-            animationController: animationController,
-            onClick: () {},
-            title: "Sign In".toUpperCase(),
-            width: double.infinity,
+          Hero(
+            tag: "button",
+            child: CustomButton(
+              animationController: animationController,
+              onClick: () {},
+              title: "Sign In".toUpperCase(),
+              width: double.infinity,
+            ),
           ),
           CustomAnimation(
             animationController: animationController,

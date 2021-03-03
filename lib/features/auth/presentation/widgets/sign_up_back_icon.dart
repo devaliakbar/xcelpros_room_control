@@ -4,6 +4,10 @@ import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 
 class SignUpBackIcon extends StatelessWidget {
+  final Function onBackPressed;
+
+  SignUpBackIcon({@required this.onBackPressed});
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -14,9 +18,7 @@ class SignUpBackIcon extends StatelessWidget {
               top: SizeConfig.height(4),
               left: SizeConfig.widthWithoutSafeArea(13)),
           child: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: onBackPressed,
             child: Row(
               children: [
                 Hero(
