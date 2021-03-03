@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:room_control/features/auth/presentation/pages/login_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
+  FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
   runApp(MyApp());
 }
 
@@ -15,16 +21,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text("Hello"),
+      home: LoginPage(),
     );
   }
 }
