@@ -51,6 +51,7 @@ class Loginform extends StatelessWidget {
             tag: "button",
             child: CustomButton(
               animationController: animationController,
+              playAnimation: false,
               onClick: () {},
               title: "Sign In".toUpperCase(),
               width: double.infinity,
