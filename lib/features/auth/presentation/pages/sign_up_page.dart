@@ -3,9 +3,9 @@ import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
-import 'package:room_control/features/auth/presentation/widgets/sign_up_back_icon.dart';
-import 'package:room_control/features/auth/presentation/widgets/sign_up_form.dart';
-import 'package:room_control/features/auth/presentation/widgets/sign_up_top_title.dart';
+import 'package:room_control/features/auth/presentation/widgets/sign_up/sign_up_back_icon.dart';
+import 'package:room_control/features/auth/presentation/widgets/sign_up/sign_up_form.dart';
+import 'package:room_control/features/auth/presentation/widgets/sign_up/sign_up_top_title.dart';
 
 class SignUpPage extends StatefulWidget {
   static const String routeName = '/signup_page';

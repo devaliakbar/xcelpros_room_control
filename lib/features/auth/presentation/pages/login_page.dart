@@ -4,8 +4,8 @@ import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
-import 'package:room_control/features/auth/presentation/widgets/login_form.dart';
-import 'package:room_control/features/auth/presentation/widgets/login_top_title.dart';
+import 'package:room_control/features/auth/presentation/widgets/login/login_form.dart';
+import 'package:room_control/features/auth/presentation/widgets/login/login_top_title.dart';
 
 class LoginPage extends StatefulWidget {
   static const String routeName = '/login_page';
