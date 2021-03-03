@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
+import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
+import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
 import 'package:room_control/features/auth/presentation/widgets/login_form.dart';
 import 'package:room_control/features/auth/presentation/widgets/login_top_title.dart';
 
@@ -14,32 +16,10 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: SingleChildScrollView(
-        child: Container(
-          height: SizeConfig.heightWithoutSafeArea(100),
-          width: SizeConfig.widthWithoutSafeArea(100),
-          decoration: BoxDecoration(
-            gradient: new LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.centerLeft,
-              colors: [
-                AppColors.primary,
-                AppColors.primaryLite,
-              ],
-            ),
-          ),
+        child: AuthBackground(
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: Hero(
-                  tag: "mask",
-                  child: Image.asset(
-                    AppImages.authMask,
-                    height: SizeConfig.heightWithoutSafeArea(42),
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-              ),
+              AuthMask(height: SizeConfig.heightWithoutSafeArea(42)),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(

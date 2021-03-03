@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
-import 'package:room_control/core/widgets/normal_text.dart';
+import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
+import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
 import 'package:room_control/features/auth/presentation/widgets/sign_up_back_icon.dart';
 import 'package:room_control/features/auth/presentation/widgets/sign_up_form.dart';
+import 'package:room_control/features/auth/presentation/widgets/sign_up_top_title.dart';
 
 class SignUpPage extends StatelessWidget {
   static const String routeName = '/signup_page';
@@ -15,31 +17,11 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: SingleChildScrollView(
-        child: Container(
-          height: SizeConfig.heightWithoutSafeArea(100),
-          width: SizeConfig.widthWithoutSafeArea(100),
-          decoration: BoxDecoration(
-            gradient: new LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.centerLeft,
-              colors: [
-                AppColors.primary,
-                AppColors.primaryLite,
-              ],
-            ),
-          ),
+        child: AuthBackground(
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: Hero(
-                  tag: "mask",
-                  child: Image.asset(
-                    AppImages.authMask,
-                    height: SizeConfig.heightWithoutSafeArea(20),
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
+              AuthMask(
+                height: SizeConfig.heightWithoutSafeArea(20),
               ),
               SignUpBackIcon(),
               Align(
@@ -48,24 +30,7 @@ class SignUpPage extends StatelessWidget {
                   height: SizeConfig.heightWithoutSafeArea(80),
                   child: Column(
                     children: [
-                      Container(
-                        alignment: Alignment.topLeft,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: SizeConfig.widthWithoutSafeArea(13),
-                        ),
-                        child: Hero(
-                          tag: "title",
-                          child: Material(
-                            color: Colors.transparent,
-                            child: NormalText(
-                              "Create New Account ",
-                              color: Colors.white,
-                              size: FontSizes.fontSizeXL,
-                              truncate: true,
-                            ),
-                          ),
-                        ),
-                      ),
+                      SignUpTopTitle(),
                       Expanded(
                         child: SignUpform(),
                       )
