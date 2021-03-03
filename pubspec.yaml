@@ -24,8 +24,6 @@ flutter:
 
   assets:
     - assets/images/mask.png
-    - assets/images/white.jpg
-    - assets/images/back_icon.png
 
   fonts:
     - family: SFPro

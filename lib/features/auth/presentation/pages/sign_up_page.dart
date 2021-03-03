@@ -95,7 +95,6 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
 
     animationController.reverse();
     await Future.delayed(Duration(milliseconds: 100));
-    print("Hello");
     return true;
   }
 }
