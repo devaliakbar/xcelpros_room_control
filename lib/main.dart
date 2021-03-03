@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'RoomControl',
       theme: ThemeData(
-        fontFamily: 'Raleway',
+        fontFamily: 'SFPro',
         splashColor: Colors.transparent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
