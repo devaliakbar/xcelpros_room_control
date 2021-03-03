@@ -31,10 +31,13 @@ class LoginPage extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.topRight,
-                child: Image.asset(
-                  AppImages.loginScreenMask,
-                  height: SizeConfig.heightWithoutSafeArea(42),
-                  fit: BoxFit.fitHeight,
+                child: Hero(
+                  tag: "mask",
+                  child: Image.asset(
+                    AppImages.authMask,
+                    height: SizeConfig.heightWithoutSafeArea(42),
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
               ),
               Align(

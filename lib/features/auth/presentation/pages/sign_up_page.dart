@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
-import 'package:room_control/features/auth/presentation/widgets/login_form.dart';
+import 'package:room_control/features/auth/presentation/widgets/sign_up_form.dart';
 
 class SignUpPage extends StatelessWidget {
   static const String routeName = '/signup_page';
@@ -32,11 +32,44 @@ class SignUpPage extends StatelessWidget {
               Align(
                 alignment: Alignment.topRight,
                 child: Hero(
-                  tag: "Jose",
+                  tag: "mask",
                   child: Image.asset(
-                    AppImages.loginScreenMask,
+                    AppImages.authMask,
                     height: SizeConfig.heightWithoutSafeArea(20),
-                    fit: BoxFit.fitHeight,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: SafeArea(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        top: SizeConfig.height(4),
+                        left: SizeConfig.widthWithoutSafeArea(13)),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_back_ios_rounded,
+                            color: Colors.white,
+                            size: IconSizes.iconSizeM,
+                          ),
+                          SizedBox(
+                            width: SizeConfig.widthWithoutSafeArea(2),
+                          ),
+                          NormalText(
+                            "Back",
+                            color: Colors.white,
+                            boldText: true,
+                            size: FontSizes.fontSizeBML,
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -58,7 +91,7 @@ class SignUpPage extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                        child: Loginform(),
+                        child: SignUpform(),
                       )
                     ],
                   ),
