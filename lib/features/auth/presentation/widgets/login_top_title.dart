@@ -31,10 +31,17 @@ class LoginTopTitle extends StatelessWidget {
           SizedBox(
             height: SizeConfig.heightWithoutSafeArea(2),
           ),
-          NormalText(
-            "to Room Control",
-            color: Colors.white,
-            size: FontSizes.fontSizeXL,
+          Hero(
+            tag: "title",
+            child: Material(
+              color: Colors.transparent,
+              child: NormalText(
+                "to Room Control",
+                color: Colors.white,
+                size: FontSizes.fontSizeXL,
+                truncate: true,
+              ),
+            ),
           )
         ],
       ),

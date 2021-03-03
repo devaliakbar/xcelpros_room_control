@@ -22,7 +22,7 @@ class NormalText extends StatelessWidget {
   Widget build(BuildContext context) {
     TextOverflow overflowStyle = TextOverflow.visible;
     if (truncate) {
-      overflowStyle = TextOverflow.ellipsis;
+      overflowStyle = TextOverflow.clip;
     }
 
     return Text(

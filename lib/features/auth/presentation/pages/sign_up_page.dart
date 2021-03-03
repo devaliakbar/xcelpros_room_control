@@ -84,10 +84,17 @@ class SignUpPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           horizontal: SizeConfig.widthWithoutSafeArea(13),
                         ),
-                        child: NormalText(
-                          "Create New Account",
-                          color: Colors.white,
-                          size: FontSizes.fontSizeXL,
+                        child: Hero(
+                          tag: "title",
+                          child: Material(
+                            color: Colors.transparent,
+                            child: NormalText(
+                              "Create New Account ",
+                              color: Colors.white,
+                              size: FontSizes.fontSizeXL,
+                              truncate: true,
+                            ),
+                          ),
                         ),
                       ),
                       Expanded(
