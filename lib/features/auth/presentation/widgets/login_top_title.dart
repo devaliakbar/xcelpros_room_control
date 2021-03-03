@@ -14,10 +14,20 @@ class LoginTopTitle extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: SizeConfig.widthWithoutSafeArea(13),
-            height: SizeConfig.heightWithoutSafeArea(0.45),
-            color: Colors.white,
+          //TODO
+          Hero(
+            tag: "back_icon",
+            child: Icon(
+              Icons.trending_flat_outlined,
+              color: Colors.white,
+              size: IconSizes.iconSizeM,
+            ),
+
+            // Container(
+            //   width: SizeConfig.widthWithoutSafeArea(13),
+            //   height: SizeConfig.heightWithoutSafeArea(0.45),
+            //   color: Colors.white,
+            // ),
           ),
           SizedBox(
             height: SizeConfig.heightWithoutSafeArea(2.8),
