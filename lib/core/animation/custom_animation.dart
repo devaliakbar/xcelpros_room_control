@@ -18,7 +18,7 @@ class CustomAnimation extends StatefulWidget {
     this.customAnimationType,
     this.opacityEffect = true,
     this.elasticEffect = false,
-    this.animationDuration = const Duration(milliseconds: 300),
+    this.animationDuration = const Duration(milliseconds: 200),
     this.animationController,
     this.playAnimation = true,
     this.showWidgetWithoutAnimation = false,

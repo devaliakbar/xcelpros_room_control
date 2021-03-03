@@ -1,5 +1,3 @@
-library page_transition;
-
 import 'package:flutter/material.dart';
 
 class PageTransitionAnimation extends PageRouteBuilder {
@@ -9,29 +7,16 @@ class PageTransitionAnimation extends PageRouteBuilder {
 
   final Duration reverseDuration;
 
-  final BuildContext ctx;
-
-  final bool inheritTheme;
-
   PageTransitionAnimation({
     Key key,
     @required this.child,
-    this.ctx,
-    this.inheritTheme = false,
-    this.duration = const Duration(milliseconds: 500),
-    this.reverseDuration = const Duration(milliseconds: 500),
+    this.duration = const Duration(milliseconds: 200),
+    this.reverseDuration = const Duration(milliseconds: 200),
     RouteSettings settings,
-  })  : assert(inheritTheme ? ctx != null : true,
-            "'ctx' cannot be null when 'inheritTheme' is true, set ctx: context"),
-        super(
+  }) : super(
           pageBuilder: (BuildContext context, Animation<double> animation,
               Animation<double> secondaryAnimation) {
-            return inheritTheme
-                ? InheritedTheme.captureAll(
-                    ctx,
-                    child,
-                  )
-                : child;
+            return child;
           },
           transitionDuration: duration,
           reverseTransitionDuration: reverseDuration,
@@ -41,7 +26,8 @@ class PageTransitionAnimation extends PageRouteBuilder {
               Animation<double> animation,
               Animation<double> secondaryAnimation,
               Widget child) {
-            return FadeTransition(opacity: animation, child: child);
+            //   return FadeTransition(opacity: animation, child: child);
+            return child;
           },
         );
 }

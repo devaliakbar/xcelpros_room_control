@@ -7,6 +7,7 @@ import 'package:room_control/core/widgets/normal_text.dart';
 class CustomButton extends StatelessWidget {
   final AnimationController animationController;
   final CustomAnimationType customAnimationType;
+  final bool playAnimation;
 
   final Function onClick;
   final String title;
@@ -15,6 +16,7 @@ class CustomButton extends StatelessWidget {
   CustomButton(
       {@required this.animationController,
       this.customAnimationType = CustomAnimationType.topToBottom,
+      this.playAnimation = true,
       @required this.onClick,
       @required this.title,
       this.width});
@@ -34,6 +36,7 @@ class CustomButton extends StatelessWidget {
         child: CustomAnimation(
           animationController: animationController,
           customAnimationType: customAnimationType,
+          playAnimation: playAnimation,
           widget: NormalText(
             title,
             color: Colors.white,

@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             animationController
                                 .reverse()
                                 .whenComplete(() async {
-                              await Navigator.pushNamed(
+                              Navigator.pushNamed(
                                   context, SignUpPage.routeName);
                               animationController.forward();
                             });
