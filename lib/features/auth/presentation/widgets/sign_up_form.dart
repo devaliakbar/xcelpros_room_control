@@ -26,52 +26,69 @@ class SignUpform extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          AuthTextField(label: "Username", icon: Icons.person_outline),
-          AuthTextField(
-            label: "Password",
-            icon: Icons.lock_open_outlined,
-            obsecure: true,
-          ),
-          AuthTextField(
-            label: "Email",
-            icon: Icons.email_outlined,
-            inputType: TextInputType.emailAddress,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
             children: [
-              Icon(
-                Icons.check_box_outline_blank_outlined,
-                size: IconSizes.iconSizeM,
-                color: AppColors.grey,
+              AuthTextField(label: "Username", icon: Icons.person_outline),
+              SizedBox(
+                height: SizeConfig.heightWithoutSafeArea(4),
+              ),
+              AuthTextField(
+                label: "Password",
+                icon: Icons.lock_open_outlined,
+                obsecure: true,
               ),
               SizedBox(
-                width: 10,
+                height: SizeConfig.heightWithoutSafeArea(4),
               ),
-              NormalText(
-                "I have accepted the",
-                color: AppColors.grey,
-                size: FontSizes.fontSizeS,
+              AuthTextField(
+                label: "Email",
+                icon: Icons.email_outlined,
+                inputType: TextInputType.emailAddress,
               ),
-              SizedBox(
-                width: 7,
-              ),
-              InkWell(
-                onTap: () {},
-                child: NormalText(
-                  "Terms & Condition",
-                  boldText: true,
-                  color: AppColors.secondary,
-                  size: FontSizes.fontSizeS,
-                ),
-              )
             ],
           ),
-          CustomButton(
-            onClick: () {},
-            title: "Sign Up".toUpperCase(),
-            width: double.infinity,
-          ),
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.check_box_outline_blank_outlined,
+                    size: IconSizes.iconSizeM,
+                    color: AppColors.grey,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  NormalText(
+                    "I have accepted the",
+                    color: AppColors.grey,
+                    size: FontSizes.fontSizeBXSS,
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: NormalText(
+                      "Terms & Condition",
+                      boldText: true,
+                      color: AppColors.secondary,
+                      size: FontSizes.fontSizeBXSS,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: SizeConfig.heightWithoutSafeArea(4),
+              ),
+              CustomButton(
+                onClick: () {},
+                title: "Sign Up".toUpperCase(),
+                width: double.infinity,
+              ),
+            ],
+          )
         ],
       ),
     );
