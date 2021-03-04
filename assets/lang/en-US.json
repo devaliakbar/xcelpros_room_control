@@ -15,7 +15,7 @@
   "password_length": "Password length must be atleast 8",
   "enter_valid_email": "Enter a valid email",
   "field_empty": "Please enter this field",
-  "incorrect_credentials": "Your email or password is invalid",
+  "incorrect_credentials": "Your username or password is invalid",
   "something_wrong": "Oops! Something went wrong!",
   "let_get_you_started": "Let's get you started",
   "user_name_length": "Username length must be atleast 3"

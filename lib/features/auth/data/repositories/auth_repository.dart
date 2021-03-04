@@ -17,7 +17,22 @@ class AuthRepositoryImpl extends AuthRepository {
       // Store Token
       return Right(true);
     } on IncorrectCredentialsException {
+      print("Ali");
       return Left(IncorrectCredentialsFailure());
+    } catch (e) {
+      return Left(UnExpectedFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> signUp(
+      {String fullName, String email, String password}) async {
+    try {
+      // AuthModel response =
+      await remoteDataSource.signUp(
+          fullName: fullName, email: email, password: password);
+      // Store Token
+      return Right(true);
     } catch (e) {
       return Left(UnExpectedFailure());
     }
