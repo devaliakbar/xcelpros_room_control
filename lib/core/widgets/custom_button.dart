@@ -25,7 +25,7 @@ class CustomButton extends StatelessWidget {
       width: width,
       height: SizeConfig.height(6.5),
       child: RaisedButton(
-        elevation: 1,
+        elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(SizeConfig.width(1.5)),
         ),

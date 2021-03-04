@@ -53,6 +53,10 @@ class AppString {
     return tr("let_get_you_started");
   }
 
+  static String get usernameLength {
+    return tr("user_name_length");
+  }
+
   static String get enterValidEmail {
     return tr("enter_valid_email");
   }

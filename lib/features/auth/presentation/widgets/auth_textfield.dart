@@ -10,6 +10,7 @@ class AuthTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool obsecure;
   final FormFieldValidator<String> validator;
+  final ValueChanged<String> onChanged;
 
   AuthTextField(
       {@required this.label,
@@ -17,7 +18,8 @@ class AuthTextField extends StatelessWidget {
       this.controller,
       this.obsecure = false,
       this.validator,
-      this.inputType = TextInputType.text});
+      this.inputType = TextInputType.text,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class AuthTextField extends StatelessWidget {
         Expanded(
           child: EnsureVisibleWhenFocused(
             child: TextFormField(
+              onChanged: onChanged,
               controller: controller,
               keyboardType: inputType,
               obscureText: obsecure,

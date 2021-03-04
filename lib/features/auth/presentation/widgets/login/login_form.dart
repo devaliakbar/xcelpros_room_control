@@ -7,15 +7,33 @@ import 'package:room_control/core/widgets/custom_button.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_textfield.dart';
 
-class Loginform extends StatelessWidget {
+class Loginform extends StatefulWidget {
   final AnimationController animationController;
   final Function onSignUp;
-  final Function onLogin;
 
-  Loginform(
-      {@required this.animationController,
-      @required this.onSignUp,
-      @required this.onLogin});
+  Loginform({
+    @required this.animationController,
+    @required this.onSignUp,
+  });
+
+  @override
+  _LoginformState createState() => _LoginformState();
+}
+
+class _LoginformState extends State<Loginform> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _userNamecontroller = TextEditingController();
+  final TextEditingController _passwordcontroller = TextEditingController();
+
+  bool _isButtonDisable = true;
+
+  @override
+  void dispose() {
+    _userNamecontroller.dispose();
+    _passwordcontroller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,61 +52,122 @@ class Loginform extends StatelessWidget {
           topRight: Radius.circular(SizeConfig.widthWithoutSafeArea(10)),
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          CustomAnimation(
-            customAnimationType: CustomAnimationType.topToBottom,
-            animationController: animationController,
-            widget: AuthTextField(
-                label: AppString.username, icon: Icons.person_outline),
-          ),
-          CustomAnimation(
-            customAnimationType: CustomAnimationType.topToBottom,
-            animationController: animationController,
-            widget: AuthTextField(
-              label: AppString.password,
-              icon: Icons.lock_open_outlined,
-              obsecure: true,
+      child: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CustomAnimation(
+              customAnimationType: CustomAnimationType.topToBottom,
+              animationController: widget.animationController,
+              widget: AuthTextField(
+                label: AppString.username,
+                icon: Icons.person_outline,
+                validator: onValidateUsername,
+                controller: _userNamecontroller,
+                onChanged: onTextChange,
+              ),
             ),
-          ),
-          Hero(
-            tag: AnimationTag.authButton,
-            child: CustomButton(
-              animationController: animationController,
-              onClick: onLogin,
-              title: AppString.signIn.toUpperCase(),
-              width: double.infinity,
+            CustomAnimation(
+              customAnimationType: CustomAnimationType.topToBottom,
+              animationController: widget.animationController,
+              widget: AuthTextField(
+                label: AppString.password,
+                validator: onValidatePassword,
+                icon: Icons.lock_open_outlined,
+                controller: _passwordcontroller,
+                obsecure: true,
+                onChanged: onTextChange,
+              ),
             ),
-          ),
-          CustomAnimation(
-            animationController: animationController,
-            customAnimationType: CustomAnimationType.bottomToTop,
-            widget: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                NormalText(
-                  AppString.dontHaveAccount,
-                  color: AppColors.grey,
-                  size: FontSizes.fontSizeBSM,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                InkWell(
-                  onTap: onSignUp,
-                  child: NormalText(
-                    AppString.signUp.toUpperCase(),
-                    boldText: true,
-                    color: AppColors.secondary,
+            Hero(
+              tag: AnimationTag.authButton,
+              child: CustomButton(
+                animationController: widget.animationController,
+                onClick: _isButtonDisable ? null : onSignIn,
+                title: AppString.signIn.toUpperCase(),
+                width: double.infinity,
+              ),
+            ),
+            CustomAnimation(
+              animationController: widget.animationController,
+              customAnimationType: CustomAnimationType.bottomToTop,
+              widget: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  NormalText(
+                    AppString.dontHaveAccount,
+                    color: AppColors.grey,
                     size: FontSizes.fontSizeBSM,
                   ),
-                )
-              ],
-            ),
-          )
-        ],
+                  SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: widget.onSignUp,
+                    child: NormalText(
+                      AppString.signUp.toUpperCase(),
+                      boldText: true,
+                      color: AppColors.secondary,
+                      size: FontSizes.fontSizeBSM,
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  void onTextChange(String value) {
+    String username = _userNamecontroller.text.trim();
+    String password = _passwordcontroller.text.trim();
+
+    if (username != "" && password != "") {
+      if (_isButtonDisable) {
+        setState(() {
+          _isButtonDisable = false;
+        });
+      }
+    } else {
+      if (!_isButtonDisable) {
+        setState(() {
+          _isButtonDisable = true;
+        });
+      }
+    }
+  }
+
+  String onValidateUsername(String value) {
+    if (value == "") {
+      return AppString.fieldEmpty;
+    }
+    if (value.length < 3) {
+      return AppString.usernameLength;
+    }
+    return null;
+  }
+
+  String onValidatePassword(String value) {
+    if (value == "") {
+      return AppString.fieldEmpty;
+    }
+
+    if (value.length < 8) {
+      return AppString.passwordLength;
+    }
+
+    return null;
+  }
+
+  void onSignIn() {
+    FocusScope.of(context).requestFocus(new FocusNode());
+    if (!_formKey.currentState.validate()) {
+      print('Validate Triggered');
+      return;
+    }
+    _formKey.currentState.save();
   }
 }

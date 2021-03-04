@@ -29,8 +29,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -56,16 +56,16 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       Expanded(
                         child: Loginform(
                           animationController: animationController,
-                          onLogin: () {
-                            animationController
-                                .reverse()
-                                .whenComplete(() async {
-                              await Navigator.pushNamed(
-                                  context, AuthLoadingPage.routeName);
-                              await Future.delayed(Duration(milliseconds: 150));
-                              animationController.forward();
-                            });
-                          },
+                          // onLogin: () {
+                          //   animationController
+                          //       .reverse()
+                          //       .whenComplete(() async {
+                          //     await Navigator.pushNamed(
+                          //         context, AuthLoadingPage.routeName);
+                          //     await Future.delayed(Duration(milliseconds: 150));
+                          //     animationController.forward();
+                          //   });
+                          // },
                           onSignUp: () {
                             animationController
                                 .reverse()
