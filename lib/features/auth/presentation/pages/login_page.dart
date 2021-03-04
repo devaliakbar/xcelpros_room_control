@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                 .whenComplete(() async {
                               await Navigator.pushNamed(
                                   context, SignUpPage.routeName);
-                              await Future.delayed(Duration(milliseconds: 200));
+                              await Future.delayed(Duration(milliseconds: 150));
                               animationController.forward();
                             });
                           },
