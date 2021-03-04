@@ -28,7 +28,7 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
     super.initState();
 
     _loadingcontroller = AnimationController(
-      duration: const Duration(milliseconds: 1300),
+      duration: const Duration(milliseconds: 1600),
       vsync: this,
     );
     _curve = CurvedAnimation(parent: _loadingcontroller, curve: Curves.easeOut);
@@ -43,13 +43,13 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
     _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
           tween: Tween<double>(
-              begin: SizeConfig.widthWithoutSafeArea(20),
+              begin: SizeConfig.widthWithoutSafeArea(15),
               end: SizeConfig.widthWithoutSafeArea(7)),
           weight: 50),
       TweenSequenceItem<double>(
           tween: Tween<double>(
               begin: SizeConfig.widthWithoutSafeArea(7),
-              end: SizeConfig.widthWithoutSafeArea(20)),
+              end: SizeConfig.widthWithoutSafeArea(15)),
           weight: 50),
     ]).animate(_curve);
 

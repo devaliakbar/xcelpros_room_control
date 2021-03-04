@@ -26,8 +26,8 @@ class PageTransitionAnimation extends PageRouteBuilder {
               Animation<double> animation,
               Animation<double> secondaryAnimation,
               Widget child) {
-            //   return FadeTransition(opacity: animation, child: child);
             return child;
+            // return FadeTransition(opacity: animation, child: child);
           },
         );
 }
