@@ -32,42 +32,32 @@ class SignUpform extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Column(
-            children: [
-              CustomAnimation(
-                customAnimationType: CustomAnimationType.bottomToTop,
-                animationController: animationController,
-                playAnimation: false,
-                widget: AuthTextField(
+          CustomAnimation(
+            customAnimationType: CustomAnimationType.bottomToTop,
+            animationController: animationController,
+            playAnimation: false,
+            widget: Column(
+              children: [
+                AuthTextField(
                     label: AppString.username, icon: Icons.person_outline),
-              ),
-              SizedBox(
-                height: SizeConfig.heightWithoutSafeArea(4),
-              ),
-              CustomAnimation(
-                customAnimationType: CustomAnimationType.bottomToTop,
-                animationController: animationController,
-                playAnimation: false,
-                widget: AuthTextField(
+                SizedBox(
+                  height: SizeConfig.heightWithoutSafeArea(4),
+                ),
+                AuthTextField(
                   label: AppString.password,
                   icon: Icons.lock_open_outlined,
                   obsecure: true,
                 ),
-              ),
-              SizedBox(
-                height: SizeConfig.heightWithoutSafeArea(4),
-              ),
-              CustomAnimation(
-                customAnimationType: CustomAnimationType.bottomToTop,
-                animationController: animationController,
-                playAnimation: false,
-                widget: AuthTextField(
+                SizedBox(
+                  height: SizeConfig.heightWithoutSafeArea(4),
+                ),
+                AuthTextField(
                   label: AppString.email,
                   icon: Icons.email_outlined,
                   inputType: TextInputType.emailAddress,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Column(
             children: [
