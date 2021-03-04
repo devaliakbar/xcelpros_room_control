@@ -7,11 +7,14 @@ class PageTransitionAnimation extends PageRouteBuilder {
 
   final Duration reverseDuration;
 
+  final bool showFadeEffect;
+
   PageTransitionAnimation({
     Key key,
     @required this.child,
     this.duration = const Duration(milliseconds: 200),
     this.reverseDuration = const Duration(milliseconds: 200),
+    this.showFadeEffect = true,
     RouteSettings settings,
   }) : super(
           pageBuilder: (BuildContext context, Animation<double> animation,
@@ -26,8 +29,11 @@ class PageTransitionAnimation extends PageRouteBuilder {
               Animation<double> animation,
               Animation<double> secondaryAnimation,
               Widget child) {
-            return child;
-            // return FadeTransition(opacity: animation, child: child);
+            if (showFadeEffect) {
+              return FadeTransition(opacity: animation, child: child);
+            } else {
+              return child;
+            }
           },
         );
 }

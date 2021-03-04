@@ -15,9 +15,7 @@ class AppRouter {
 
       case SignUpPage.routeName:
         return PageTransitionAnimation(
-          child: SignUpPage(),
-          settings: settings,
-        );
+            child: SignUpPage(), settings: settings, showFadeEffect: false);
 
       case AuthLoadingPage.routeName:
         return PageTransitionAnimation(
