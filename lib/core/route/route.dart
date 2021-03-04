@@ -15,13 +15,16 @@ class AppRouter {
 
       case SignUpPage.routeName:
         return PageTransitionAnimation(
-            child: SignUpPage(), settings: settings, showFadeEffect: false);
+            child: SignUpPage(),
+            settings: settings,
+            showFadeEffect: false,
+            duration: Duration(milliseconds: 200));
 
       case AuthLoadingPage.routeName:
         return PageTransitionAnimation(
-            child: AuthLoadingPage(),
-            settings: settings,
-            duration: Duration(milliseconds: 300));
+          child: AuthLoadingPage(),
+          settings: settings,
+        );
 
       default:
         assert(false, 'Need to implement ${settings.name}');

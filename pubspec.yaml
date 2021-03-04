@@ -27,6 +27,7 @@ flutter:
     - assets/lang/en-US.json
     - assets/images/mask.png
     - assets/images/loading_icon.png
+    - assets/images/app_icon.png
 
   fonts:
     - family: SFPro

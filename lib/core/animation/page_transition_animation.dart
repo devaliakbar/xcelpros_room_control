@@ -12,8 +12,8 @@ class PageTransitionAnimation extends PageRouteBuilder {
   PageTransitionAnimation({
     Key key,
     @required this.child,
-    this.duration = const Duration(milliseconds: 200),
-    this.reverseDuration = const Duration(milliseconds: 200),
+    this.duration = const Duration(milliseconds: 300),
+    this.reverseDuration = const Duration(milliseconds: 300),
     this.showFadeEffect = true,
     RouteSettings settings,
   }) : super(
