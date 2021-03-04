@@ -36,14 +36,14 @@ class Loginform extends StatelessWidget {
           CustomAnimation(
             customAnimationType: CustomAnimationType.topToBottom,
             animationController: animationController,
-            widget:
-                AuthTextField(label: "Username", icon: Icons.person_outline),
+            widget: AuthTextField(
+                label: AppString.username, icon: Icons.person_outline),
           ),
           CustomAnimation(
             customAnimationType: CustomAnimationType.topToBottom,
             animationController: animationController,
             widget: AuthTextField(
-              label: "Password",
+              label: AppString.password,
               icon: Icons.lock_open_outlined,
               obsecure: true,
             ),
@@ -53,7 +53,7 @@ class Loginform extends StatelessWidget {
             child: CustomButton(
               animationController: animationController,
               onClick: () {},
-              title: "Sign In".toUpperCase(),
+              title: AppString.signIn.toUpperCase(),
               width: double.infinity,
             ),
           ),
@@ -64,7 +64,7 @@ class Loginform extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NormalText(
-                  "Don't have an account?",
+                  AppString.dontHaveAccount,
                   color: AppColors.grey,
                   size: FontSizes.fontSizeBSM,
                 ),
@@ -74,7 +74,7 @@ class Loginform extends StatelessWidget {
                 InkWell(
                   onTap: onSignUp,
                   child: NormalText(
-                    "Sign UP".toUpperCase(),
+                    AppString.signUp.toUpperCase(),
                     boldText: true,
                     color: AppColors.secondary,
                     size: FontSizes.fontSizeBSM,

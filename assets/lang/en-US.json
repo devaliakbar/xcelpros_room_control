@@ -1,0 +1,20 @@
+{
+  "app_title": "RoomControl",
+  "welcome": "Welcome",
+  "to_room_control": "to Room Control",
+  "back": "Back",
+  "sign_in": "Sign In",
+  "email": "Email",
+  "username": "Username",
+  "password": "Password",
+  "dont_have_account": "Don't have an account?",
+  "create_account": "Create New Account",
+  "i_have_accept": "I have accepted the",
+  "terms_condition": "Terms & Condition",
+  "sign_up": "Sign Up",
+  "password_length": "Password length must be atleast 6",
+  "enter_valid_email": "Enter a valid email",
+  "field_empty": "Please enter this field",
+  "incorrect_credentials": "Your email or password is invalid",
+  "something_wrong": "Oops! Something went wrong!"
+}

@@ -38,7 +38,7 @@ class SignUpBackIcon extends StatelessWidget {
                   child: Material(
                     color: Colors.transparent,
                     child: NormalText(
-                      "Back",
+                      AppString.back,
                       color: Colors.white,
                       boldText: true,
                       size: FontSizes.fontSizeBML,

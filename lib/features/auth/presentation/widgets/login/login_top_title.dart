@@ -34,7 +34,7 @@ class LoginTopTitle extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: NormalText(
-                    "Welcome",
+                    AppString.welcome,
                     color: Colors.white,
                     size: FontSizes.fontSizeXL,
                     boldText: true,
@@ -54,7 +54,7 @@ class LoginTopTitle extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: NormalText(
-                    "to Room Control",
+                    AppString.toRoomControl,
                     color: Colors.white,
                     size: FontSizes.fontSizeXL,
                     truncate: true,

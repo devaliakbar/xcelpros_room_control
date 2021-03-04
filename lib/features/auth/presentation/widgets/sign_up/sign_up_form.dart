@@ -39,7 +39,7 @@ class SignUpform extends StatelessWidget {
                 animationController: animationController,
                 playAnimation: false,
                 widget: AuthTextField(
-                    label: "Username", icon: Icons.person_outline),
+                    label: AppString.username, icon: Icons.person_outline),
               ),
               SizedBox(
                 height: SizeConfig.heightWithoutSafeArea(4),
@@ -49,7 +49,7 @@ class SignUpform extends StatelessWidget {
                 animationController: animationController,
                 playAnimation: false,
                 widget: AuthTextField(
-                  label: "Password",
+                  label: AppString.password,
                   icon: Icons.lock_open_outlined,
                   obsecure: true,
                 ),
@@ -62,7 +62,7 @@ class SignUpform extends StatelessWidget {
                 animationController: animationController,
                 playAnimation: false,
                 widget: AuthTextField(
-                  label: "Email",
+                  label: AppString.email,
                   icon: Icons.email_outlined,
                   inputType: TextInputType.emailAddress,
                 ),
@@ -87,7 +87,7 @@ class SignUpform extends StatelessWidget {
                       width: 10,
                     ),
                     NormalText(
-                      "I have accepted the",
+                      AppString.iHaveAccept,
                       color: AppColors.grey,
                       size: FontSizes.fontSizeBXSS,
                     ),
@@ -97,7 +97,7 @@ class SignUpform extends StatelessWidget {
                     InkWell(
                       onTap: () {},
                       child: NormalText(
-                        "Terms & Condition",
+                        AppString.termsCondition,
                         boldText: true,
                         color: AppColors.secondary,
                         size: FontSizes.fontSizeBXSS,
@@ -115,7 +115,7 @@ class SignUpform extends StatelessWidget {
                   animationController: animationController,
                   customAnimationType: CustomAnimationType.bottomToTop,
                   onClick: () {},
-                  title: "Sign Up".toUpperCase(),
+                  title: AppString.signUp.toUpperCase(),
                   width: double.infinity,
                 ),
               )

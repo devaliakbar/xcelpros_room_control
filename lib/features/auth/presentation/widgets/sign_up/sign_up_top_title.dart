@@ -17,7 +17,7 @@ class SignUpTopTitle extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: NormalText(
-            "Create New Account ",
+            AppString.createAccount,
             color: Colors.white,
             size: FontSizes.fontSizeXL,
             truncate: true,
