@@ -12,7 +12,7 @@
   "i_have_accept": "I have accepted the",
   "terms_condition": "Terms & Condition",
   "sign_up": "Sign Up",
-  "password_length": "Password length must be atleast 6",
+  "password_length": "Password length must be atleast 8",
   "enter_valid_email": "Enter a valid email",
   "field_empty": "Please enter this field",
   "incorrect_credentials": "Your email or password is invalid",

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
+import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
+import 'package:room_control/features/auth/presentation/pages/auth_loading_page.dart';
 import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
@@ -36,55 +39,62 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    return Scaffold(
-      backgroundColor: AppColors.primary,
-      body: SingleChildScrollView(
-        child: AuthBackground(
-          child: Stack(
-            children: [
-              AuthMask(
-                height: SizeConfig.heightWithoutSafeArea(42),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: SizeConfig.heightWithoutSafeArea(63),
-                  child: Column(
-                    children: [
-                      LoginTopTitle(),
-                      Expanded(
-                        child: Loginform(
-                          animationController: animationController,
-                          // onLogin: () {
-                          //   animationController
-                          //       .reverse()
-                          //       .whenComplete(() async {
-                          //     await Navigator.pushNamed(
-                          //         context, AuthLoadingPage.routeName);
-                          //     await Future.delayed(Duration(milliseconds: 150));
-                          //     animationController.forward();
-                          //   });
-                          // },
-                          onSignUp: () {
-                            animationController
-                                .reverse()
-                                .whenComplete(() async {
-                              await Navigator.pushNamed(
-                                  context, SignUpPage.routeName);
-                              await Future.delayed(Duration(milliseconds: 150));
-                              animationController.forward();
-                            });
-                          },
-                        ),
-                      )
-                    ],
-                  ),
+    return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
+      print("Login Screen State Changed");
+
+      if (state is LoginLoadingState) {
+        animationController.reverse().whenComplete(() async {
+          animationController.reverse().whenComplete(() async {
+            await Navigator.pushNamed(context, AuthLoadingPage.routeName);
+            await Future.delayed(Duration(milliseconds: 150));
+            animationController.forward();
+          });
+        });
+      }
+    }, buildWhen: (previous, current) {
+      return false;
+    }, builder: (context, state) {
+      return Scaffold(
+        backgroundColor: AppColors.primary,
+        body: SingleChildScrollView(
+          child: AuthBackground(
+            child: Stack(
+              children: [
+                AuthMask(
+                  height: SizeConfig.heightWithoutSafeArea(42),
                 ),
-              )
-            ],
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: SizeConfig.heightWithoutSafeArea(63),
+                    child: Column(
+                      children: [
+                        LoginTopTitle(),
+                        Expanded(
+                          child: Loginform(
+                            animationController: animationController,
+                            onSignUp: () {
+                              animationController
+                                  .reverse()
+                                  .whenComplete(() async {
+                                await Navigator.pushNamed(
+                                    context, SignUpPage.routeName);
+                                await Future.delayed(
+                                    Duration(milliseconds: 150));
+                                animationController.forward();
+                              });
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

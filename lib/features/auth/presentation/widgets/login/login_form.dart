@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/custom_button.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
+import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_textfield.dart';
 
 class Loginform extends StatefulWidget {
@@ -169,5 +171,11 @@ class _LoginformState extends State<Loginform> {
       return;
     }
     _formKey.currentState.save();
+
+    BlocProvider.of<LoginBloc>(context).add(
+      LoginUserEvent(
+          email: _userNamecontroller.text.trim(),
+          password: _passwordcontroller.text.trim()),
+    );
   }
 }

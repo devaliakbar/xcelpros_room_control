@@ -1,10 +1,13 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/res/app_resources.dart';
+import 'package:room_control/core/services/show_toast.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
+import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
 
@@ -64,59 +67,77 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primary,
-      body: AuthBackground(
-        child: Stack(
-          children: [
-            AuthMask(
-              height: SizeConfig.heightWithoutSafeArea(56),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: SizeConfig.widthWithoutSafeArea(100),
-                height: SizeConfig.heightWithoutSafeArea(60),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: SizeConfig.heightWithoutSafeArea(18),
-                      child: AnimatedBuilder(
-                        animation: _loadingcontroller,
-                        builder: (_, child) {
-                          return Transform.rotate(
-                            angle: _rotationAnimation.value * 2 * math.pi,
-                            child: Container(
-                              width: _sizeAnimation.value,
-                              child: Image.asset(
-                                AppImages.loadingIcon,
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    Hero(
-                      tag: AnimationTag.authTitle,
-                      child: Material(
-                        color: Colors.transparent,
-                        child: NormalText(
-                          AppString.letGetYouStarted,
-                          color: Colors.white,
-                          size: FontSizes.fontSizeXL,
-                          truncate: true,
-                        ),
-                      ),
-                    )
-                  ],
+    return BlocConsumer<LoginBloc, LoginState>(
+      listener: (context, state) async {
+        print("Login Screen State Changed");
+
+        if (state is LoginErrorState) {
+          ShowToast(state.message);
+
+          await Future.delayed(Duration(seconds: 2));
+
+          Navigator.pop(context);
+        }
+      },
+      buildWhen: (previous, current) {
+        return false;
+      },
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: AppColors.primary,
+          body: AuthBackground(
+            child: Stack(
+              children: [
+                AuthMask(
+                  height: SizeConfig.heightWithoutSafeArea(56),
                 ),
-              ),
-            )
-          ],
-        ),
-      ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    width: SizeConfig.widthWithoutSafeArea(100),
+                    height: SizeConfig.heightWithoutSafeArea(60),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: SizeConfig.heightWithoutSafeArea(18),
+                          child: AnimatedBuilder(
+                            animation: _loadingcontroller,
+                            builder: (_, child) {
+                              return Transform.rotate(
+                                angle: _rotationAnimation.value * 2 * math.pi,
+                                child: Container(
+                                  width: _sizeAnimation.value,
+                                  child: Image.asset(
+                                    AppImages.loadingIcon,
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Hero(
+                          tag: AnimationTag.authTitle,
+                          child: Material(
+                            color: Colors.transparent,
+                            child: NormalText(
+                              AppString.letGetYouStarted,
+                              color: Colors.white,
+                              size: FontSizes.fontSizeXL,
+                              truncate: true,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
