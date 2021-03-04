@@ -16,5 +16,6 @@
   "enter_valid_email": "Enter a valid email",
   "field_empty": "Please enter this field",
   "incorrect_credentials": "Your email or password is invalid",
-  "something_wrong": "Oops! Something went wrong!"
+  "something_wrong": "Oops! Something went wrong!",
+  "let_get_you_started": "Let's get you started"
 }

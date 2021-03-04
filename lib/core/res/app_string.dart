@@ -49,6 +49,10 @@ class AppString {
     return tr("sign_up");
   }
 
+  static String get letGetYouStarted {
+    return tr("let_get_you_started");
+  }
+
   static String get enterValidEmail {
     return tr("enter_valid_email");
   }

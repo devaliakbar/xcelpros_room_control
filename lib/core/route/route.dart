@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:room_control/core/animation/page_transition_animation.dart';
+import 'package:room_control/features/auth/presentation/pages/auth_loading_page.dart';
 import 'package:room_control/features/auth/presentation/pages/login_page.dart';
 import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
 
@@ -15,6 +16,12 @@ class AppRouter {
       case SignUpPage.routeName:
         return PageTransitionAnimation(
           child: SignUpPage(),
+          settings: settings,
+        );
+
+      case AuthLoadingPage.routeName:
+        return PageTransitionAnimation(
+          child: AuthLoadingPage(),
           settings: settings,
         );
 

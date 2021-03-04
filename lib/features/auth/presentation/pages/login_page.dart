@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
+import 'package:room_control/features/auth/presentation/pages/auth_loading_page.dart';
 import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
@@ -55,6 +56,16 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       Expanded(
                         child: Loginform(
                           animationController: animationController,
+                          onLogin: () {
+                            animationController
+                                .reverse()
+                                .whenComplete(() async {
+                              await Navigator.pushNamed(
+                                  context, AuthLoadingPage.routeName);
+                              await Future.delayed(Duration(milliseconds: 150));
+                              animationController.forward();
+                            });
+                          },
                           onSignUp: () {
                             animationController
                                 .reverse()

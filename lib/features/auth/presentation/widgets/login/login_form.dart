@@ -10,8 +10,12 @@ import 'package:room_control/features/auth/presentation/widgets/auth_textfield.d
 class Loginform extends StatelessWidget {
   final AnimationController animationController;
   final Function onSignUp;
+  final Function onLogin;
 
-  Loginform({@required this.animationController, @required this.onSignUp});
+  Loginform(
+      {@required this.animationController,
+      @required this.onSignUp,
+      @required this.onLogin});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +56,7 @@ class Loginform extends StatelessWidget {
             tag: AnimationTag.authButton,
             child: CustomButton(
               animationController: animationController,
-              onClick: () {},
+              onClick: onLogin,
               title: AppString.signIn.toUpperCase(),
               width: double.infinity,
             ),
