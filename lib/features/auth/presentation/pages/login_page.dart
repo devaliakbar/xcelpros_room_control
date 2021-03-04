@@ -27,6 +27,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
@@ -53,7 +59,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             animationController
                                 .reverse()
                                 .whenComplete(() async {
-                              Navigator.pushNamed(
+                              await Navigator.pushNamed(
                                   context, SignUpPage.routeName);
                               await Future.delayed(Duration(milliseconds: 200));
                               animationController.forward();
