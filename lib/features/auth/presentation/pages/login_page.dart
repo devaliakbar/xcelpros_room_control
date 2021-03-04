@@ -58,12 +58,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             child: Stack(
               children: [
                 AuthMask(
-                  height: SizeConfig.heightWithoutSafeArea(42),
+                  height: SizeConfig.heightWithoutSafeArea(40),
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    height: SizeConfig.heightWithoutSafeArea(63),
+                    height: SizeConfig.heightWithoutSafeArea(67),
                     child: Column(
                       children: [
                         LoginTopTitle(),

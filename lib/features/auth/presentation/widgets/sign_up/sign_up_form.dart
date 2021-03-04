@@ -189,6 +189,11 @@ class _SignUpformState extends State<SignUpform> {
     if (value == "") {
       return AppString.fieldEmpty;
     }
+
+    if (value.contains(" ")) {
+      return AppString.whiteSpaceError;
+    }
+
     if (value.length < 3) {
       return AppString.usernameLength;
     }

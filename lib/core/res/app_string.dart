@@ -80,4 +80,8 @@ class AppString {
   static String get somethingWrong {
     return tr("something_wrong");
   }
+
+  static String get whiteSpaceError {
+    return tr("white_space_error");
+  }
 }
