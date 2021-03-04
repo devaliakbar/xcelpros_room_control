@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
@@ -18,7 +19,7 @@ class LoginTopTitle extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Hero(
-              tag: "back_icon",
+              tag: AnimationTag.backIcon,
               child: Icon(
                 Icons.horizontal_rule_sharp,
                 color: Colors.white,
@@ -29,7 +30,7 @@ class LoginTopTitle extends StatelessWidget {
               padding:
                   EdgeInsets.only(left: SizeConfig.widthWithoutSafeArea(3)),
               child: Hero(
-                tag: "welcome",
+                tag: AnimationTag.welcomeNBack,
                 child: Material(
                   color: Colors.transparent,
                   child: NormalText(
@@ -49,7 +50,7 @@ class LoginTopTitle extends StatelessWidget {
               padding:
                   EdgeInsets.only(left: SizeConfig.widthWithoutSafeArea(3)),
               child: Hero(
-                tag: "title",
+                tag: AnimationTag.authTitle,
                 child: Material(
                   color: Colors.transparent,
                   child: NormalText(

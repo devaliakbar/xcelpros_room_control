@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
@@ -48,10 +49,9 @@ class Loginform extends StatelessWidget {
             ),
           ),
           Hero(
-            tag: "button",
+            tag: AnimationTag.authButton,
             child: CustomButton(
               animationController: animationController,
-              playAnimation: false,
               onClick: () {},
               title: "Sign In".toUpperCase(),
               width: double.infinity,

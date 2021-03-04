@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
@@ -12,7 +13,7 @@ class SignUpTopTitle extends StatelessWidget {
         horizontal: SizeConfig.widthWithoutSafeArea(13),
       ),
       child: Hero(
-        tag: "title",
+        tag: AnimationTag.authTitle,
         child: Material(
           color: Colors.transparent,
           child: NormalText(

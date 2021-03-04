@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
@@ -109,10 +110,9 @@ class SignUpform extends StatelessWidget {
                 height: SizeConfig.heightWithoutSafeArea(4),
               ),
               Hero(
-                tag: "button",
+                tag: AnimationTag.authButton,
                 child: CustomButton(
                   animationController: animationController,
-                  playAnimation: false,
                   customAnimationType: CustomAnimationType.bottomToTop,
                   onClick: () {},
                   title: "Sign Up".toUpperCase(),

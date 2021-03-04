@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
@@ -22,7 +23,7 @@ class SignUpBackIcon extends StatelessWidget {
             child: Row(
               children: [
                 Hero(
-                  tag: "back_icon",
+                  tag: AnimationTag.backIcon,
                   child: Icon(
                     Icons.arrow_back_ios_rounded,
                     color: Colors.white,
@@ -33,7 +34,7 @@ class SignUpBackIcon extends StatelessWidget {
                   width: SizeConfig.widthWithoutSafeArea(2),
                 ),
                 Hero(
-                  tag: "welcome",
+                  tag: AnimationTag.welcomeNBack,
                   child: Material(
                     color: Colors.transparent,
                     child: NormalText(

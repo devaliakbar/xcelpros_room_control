@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/res/app_resources.dart';
 
 class AuthMask extends StatelessWidget {
@@ -11,7 +12,7 @@ class AuthMask extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Hero(
-        tag: "mask",
+        tag: AnimationTag.authMask,
         child: Image.asset(
           AppImages.authMask,
           height: height,
