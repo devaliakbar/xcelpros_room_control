@@ -1,21 +1,31 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:room_control/core/route/route.dart';
+import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:room_control/features/welcome/presentation/pages/splash_screen.dart';
+import 'injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await di.init();
 
   await FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
   FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
 
   runApp(
-    EasyLocalization(
-      child: MyApp(),
-      supportedLocales: [Locale('en', 'US')],
-      fallbackLocale: Locale('en', 'US'),
-      path: 'assets/lang',
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginBloc>(create: (context) => di.sl<LoginBloc>()),
+      ],
+      child: EasyLocalization(
+        child: MyApp(),
+        supportedLocales: [Locale('en', 'US')],
+        fallbackLocale: Locale('en', 'US'),
+        path: 'assets/lang',
+      ),
     ),
   );
 }
