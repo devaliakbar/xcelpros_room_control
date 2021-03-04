@@ -5,7 +5,7 @@ import 'package:room_control/features/auth/data/models/auth_model.dart';
 abstract class AuthRemoteDataSource {
   Future<AuthModel> login({@required String email, @required String password});
   Future<AuthModel> signUp(
-      {@required String fullName,
+      {@required String username,
       @required String email,
       @required String password});
 }
@@ -27,9 +27,15 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<AuthModel> signUp(
-      {String fullName, String email, String password}) async {
+      {String username, String email, String password}) async {
     //Connect with API
     await Future.delayed(Duration(seconds: 4));
+
+    if (username == "ali") {
+      ///IF Username taken , Throw [UsernameTakenException]
+      throw UsernameTakenException();
+    }
+
     return AuthModel();
   }
 }

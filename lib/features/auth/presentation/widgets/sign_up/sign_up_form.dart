@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
@@ -6,6 +7,7 @@ import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/utils/utils.dart';
 import 'package:room_control/core/widgets/custom_button.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
+import 'package:room_control/features/auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_textfield.dart';
 
 class SignUpform extends StatefulWidget {
@@ -23,6 +25,7 @@ class _SignUpformState extends State<SignUpform> {
   final TextEditingController _userNamecontroller = TextEditingController();
   final TextEditingController _passwordcontroller = TextEditingController();
   final TextEditingController _emailcontroller = TextEditingController();
+  bool _acceptTerms = false;
 
   bool _isButtonDisable = true;
 
@@ -67,7 +70,7 @@ class _SignUpformState extends State<SignUpform> {
                     icon: Icons.person_outline,
                     controller: _userNamecontroller,
                     validator: onValidateUsername,
-                    onChanged: onTextChange,
+                    onChanged: onFormValueChange,
                   ),
                   SizedBox(
                     height: SizeConfig.heightWithoutSafeArea(4),
@@ -78,7 +81,7 @@ class _SignUpformState extends State<SignUpform> {
                     obsecure: true,
                     controller: _passwordcontroller,
                     validator: onValidatePassword,
-                    onChanged: onTextChange,
+                    onChanged: onFormValueChange,
                   ),
                   SizedBox(
                     height: SizeConfig.heightWithoutSafeArea(4),
@@ -89,7 +92,7 @@ class _SignUpformState extends State<SignUpform> {
                     inputType: TextInputType.emailAddress,
                     controller: _emailcontroller,
                     validator: onValidateEmail,
-                    onChanged: onTextChange,
+                    onChanged: onFormValueChange,
                   ),
                 ],
               ),
@@ -101,35 +104,45 @@ class _SignUpformState extends State<SignUpform> {
                 animationController: widget.animationController,
                 playAnimation: false,
                 customAnimationType: CustomAnimationType.bottomToTop,
-                widget: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.check_box_outline_blank_outlined,
-                      size: IconSizes.iconSizeM,
-                      color: AppColors.grey,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    NormalText(
-                      AppString.iHaveAccept,
-                      color: AppColors.grey,
-                      size: FontSizes.fontSizeBXSS,
-                    ),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: NormalText(
-                        AppString.termsCondition,
-                        boldText: true,
-                        color: AppColors.secondary,
+                widget: InkWell(
+                  onTap: () {
+                    _acceptTerms = !_acceptTerms;
+                    setState(() {});
+                    onFormValueChange(null);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        _acceptTerms
+                            ? Icons.check_box_rounded
+                            : Icons.check_box_outline_blank_outlined,
+                        size: IconSizes.iconSizeM,
+                        color:
+                            _acceptTerms ? AppColors.secondary : AppColors.grey,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      NormalText(
+                        AppString.iHaveAccept,
+                        color: AppColors.grey,
                         size: FontSizes.fontSizeBXSS,
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        width: 7,
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: NormalText(
+                          AppString.termsCondition,
+                          boldText: true,
+                          color: AppColors.secondary,
+                          size: FontSizes.fontSizeBXSS,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -152,12 +165,12 @@ class _SignUpformState extends State<SignUpform> {
     );
   }
 
-  void onTextChange(String value) {
+  void onFormValueChange(String _) {
     String username = _userNamecontroller.text.trim();
     String password = _passwordcontroller.text.trim();
     String email = _emailcontroller.text.trim();
 
-    if (username != "" && password != "" && email != "") {
+    if (username != "" && password != "" && email != "" && _acceptTerms) {
       if (_isButtonDisable) {
         setState(() {
           _isButtonDisable = false;
@@ -211,5 +224,12 @@ class _SignUpformState extends State<SignUpform> {
       return;
     }
     _formKey.currentState.save();
+
+    BlocProvider.of<SignUpBloc>(context).add(
+      SignUpUserEvent(
+          username: _userNamecontroller.text.trim(),
+          email: _emailcontroller.text.trim(),
+          password: _passwordcontroller.text.trim()),
+    );
   }
 }

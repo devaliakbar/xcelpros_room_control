@@ -73,6 +73,10 @@ class AppString {
     return tr("incorrect_credentials");
   }
 
+  static String get usernameTaken {
+    return tr("username_taken");
+  }
+
   static String get somethingWrong {
     return tr("something_wrong");
   }

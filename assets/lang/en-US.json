@@ -18,5 +18,6 @@
   "incorrect_credentials": "Your username or password is invalid",
   "something_wrong": "Oops! Something went wrong!",
   "let_get_you_started": "Let's get you started",
-  "user_name_length": "Username length must be atleast 3"
+  "user_name_length": "Username length must be atleast 3",
+  "username_taken": "Username is taken"
 }

@@ -39,22 +39,19 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
-      print("Login Screen State Changed");
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) {
+        print("Login Screen State Changed");
 
-      if (state is LoginLoadingState) {
-        animationController.reverse().whenComplete(() async {
+        if (state is LoginLoadingState) {
           animationController.reverse().whenComplete(() async {
             await Navigator.pushNamed(context, AuthLoadingPage.routeName);
             await Future.delayed(Duration(milliseconds: 150));
             animationController.forward();
           });
-        });
-      }
-    }, buildWhen: (previous, current) {
-      return false;
-    }, builder: (context, state) {
-      return Scaffold(
+        }
+      },
+      child: Scaffold(
         backgroundColor: AppColors.primary,
         body: SingleChildScrollView(
           child: AuthBackground(
@@ -94,7 +91,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             ),
           ),
         ),
-      );
-    });
+      ),
+    );
   }
 }

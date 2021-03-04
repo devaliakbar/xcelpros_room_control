@@ -8,25 +8,25 @@ import 'package:room_control/features/auth/domain/repositories/auth_repository.d
 class PerformSignUp implements UseCase<bool, Params> {
   final AuthRepository authRepository;
 
-  PerformSignUp(this.authRepository);
+  PerformSignUp({@required this.authRepository});
 
   @override
   Future<Either<Failure, bool>> call(Params params) async {
     return await authRepository.signUp(
-        fullName: params.fullName,
+        username: params.username,
         email: params.email,
         password: params.password);
   }
 }
 
 class Params extends Equatable {
-  final String fullName;
+  final String username;
   final String email;
   final String password;
 
   Params(
-      {@required this.fullName, @required this.email, @required this.password});
+      {@required this.username, @required this.email, @required this.password});
 
   @override
-  List<Object> get props => [fullName, email, password];
+  List<Object> get props => [username, email, password];
 }

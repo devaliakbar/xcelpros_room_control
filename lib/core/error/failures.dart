@@ -12,3 +12,5 @@ abstract class Failure extends Equatable {
 class UnExpectedFailure extends Failure {}
 
 class IncorrectCredentialsFailure extends Failure {}
+
+class UsernameTakenFailure extends Failure {}

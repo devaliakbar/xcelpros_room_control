@@ -8,6 +8,7 @@ import 'package:room_control/core/services/show_toast.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
+import 'package:room_control/features/auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
 
@@ -67,23 +68,40 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginBloc, LoginState>(
-      listener: (context, state) async {
-        print("Login Screen State Changed");
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<SignUpBloc, SignUpState>(
+          listener: (context, state) async {
+            print("Auth Loading Screen State Changed (For SignUp)");
 
-        if (state is LoginErrorState) {
-          ShowToast(state.message);
+            if (state is SignUpErrorState) {
+              ShowToast(state.message);
 
-          await Future.delayed(Duration(seconds: 2));
+              await Future.delayed(Duration(seconds: 2));
 
-          Navigator.pop(context);
-        }
-      },
-      buildWhen: (previous, current) {
-        return false;
-      },
-      builder: (context, state) {
-        return Scaffold(
+              Navigator.pop(context);
+            }
+          },
+        ),
+        BlocListener<LoginBloc, LoginState>(
+          listener: (context, state) async {
+            print("Auth Loading Screen State Changed (For Login)");
+
+            if (state is LoginErrorState) {
+              ShowToast(state.message);
+
+              await Future.delayed(Duration(seconds: 2));
+
+              Navigator.pop(context);
+            }
+          },
+        ),
+      ],
+      child: WillPopScope(
+        onWillPop: () async {
+          return false;
+        },
+        child: Scaffold(
           backgroundColor: AppColors.primary,
           body: AuthBackground(
             child: Stack(
@@ -136,8 +154,8 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
               ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

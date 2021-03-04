@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:room_control/core/route/route.dart';
 import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
+import 'package:room_control/features/auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:room_control/features/welcome/presentation/pages/splash_screen.dart';
 import 'injection_container.dart' as di;
 
@@ -19,6 +20,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<LoginBloc>(create: (context) => di.sl<LoginBloc>()),
+        BlocProvider<SignUpBloc>(create: (context) => di.sl<SignUpBloc>()),
       ],
       child: EasyLocalization(
         child: MyApp(),
