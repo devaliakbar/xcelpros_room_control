@@ -19,9 +19,9 @@ class AppRouter {
 
       case AuthLoadingPage.routeName:
         return PageTransitionAnimation(
-          child: AuthLoadingPage(),
-          settings: settings,
-        );
+            child: AuthLoadingPage(),
+            settings: settings,
+            duration: Duration(milliseconds: 300));
 
       default:
         assert(false, 'Need to implement ${settings.name}');
