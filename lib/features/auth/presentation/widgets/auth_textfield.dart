@@ -49,7 +49,7 @@ class AuthTextField extends StatelessWidget {
                 contentPadding: EdgeInsets.symmetric(
                   horizontal: SizeConfig.widthWithoutSafeArea(1),
                 ),
-                errorStyle: TextStyle(fontSize: FontSizes.fontSizeBSM),
+                errorStyle: TextStyle(fontSize: FontSizes.fontSizeS),
                 hintStyle: TextStyle(
                     fontSize: FontSizes.fontSizeM, color: AppColors.grey),
                 hintText: label,
