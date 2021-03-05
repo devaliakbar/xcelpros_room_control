@@ -27,7 +27,7 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
     super.initState();
 
     _exitAnimation = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 300),
       vsync: this,
     );
   }
@@ -86,7 +86,7 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
             child: Stack(
               children: [
                 CustomAnimation(
-                  customAnimationType: CustomAnimationType.rightToLeft,
+                  customAnimationType: CustomAnimationType.topToBottom,
                   animationController: _exitAnimation,
                   showWidgetWithoutAnimation: true,
                   widget: AuthMask(
@@ -95,12 +95,7 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: CustomAnimation(
-                    customAnimationType: CustomAnimationType.bottomToTop,
-                    animationController: _exitAnimation,
-                    showWidgetWithoutAnimation: true,
-                    widget: AuthLoadingAnimation(),
-                  ),
+                  child: AuthLoadingAnimation(),
                 )
               ],
             ),
