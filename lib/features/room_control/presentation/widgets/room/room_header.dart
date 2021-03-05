@@ -4,6 +4,9 @@ import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 
 class RoomHeader extends StatelessWidget {
+  final bool hideNoOfLight;
+  RoomHeader({@required this.hideNoOfLight});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,12 +56,14 @@ class RoomHeader extends StatelessWidget {
           SizedBox(
             height: SizeConfig.height(1.5),
           ),
-          NormalText(
-            "4 Lights",
-            color: AppColors.yellow,
-            boldText: true,
-            size: FontSizes.fontSizeL,
-          ),
+          hideNoOfLight
+              ? Container()
+              : NormalText(
+                  "4 Lights",
+                  color: AppColors.yellow,
+                  boldText: true,
+                  size: FontSizes.fontSizeL,
+                ),
         ],
       ),
     );
