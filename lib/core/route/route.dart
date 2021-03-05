@@ -45,6 +45,7 @@ class AppRouter {
       case RoomPage.routeName:
         return PageTransitionAnimation(
           child: RoomPage(),
+          duration: Duration(milliseconds: 700),
           settings: settings,
         );
 

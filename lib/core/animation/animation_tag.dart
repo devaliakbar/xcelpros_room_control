@@ -4,6 +4,8 @@ class AnimationTag {
   static const String welcomeNBack = "welcomeNBack";
   static const String authButton = "authButton";
   static const String authTitle = "authTitle";
-  static const String backgroundElement = "backgroundElement";
   static const String homeBody = "homeBody";
+  static const String backgroundElement1 = "backgroundElement1";
+  static const String backgroundElement2 = "backgroundElement2";
+  static const String backgroundElement3 = "backgroundElement3";
 }

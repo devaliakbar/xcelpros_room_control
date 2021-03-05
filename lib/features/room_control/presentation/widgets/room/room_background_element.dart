@@ -6,13 +6,13 @@ import 'package:room_control/core/services/size_config.dart';
 class RoomBackgroundElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: AnimationTag.backgroundElement,
-      child: Stack(
-        children: [
-          Positioned(
-            left: -SizeConfig.width(25),
-            top: SizeConfig.height(6),
+    return Stack(
+      children: [
+        Positioned(
+          left: -SizeConfig.width(25),
+          top: SizeConfig.height(6),
+          child: Hero(
+            tag: AnimationTag.backgroundElement1,
             child: Container(
               decoration: BoxDecoration(
                   color: AppColors.primaryLite.withOpacity(0.3),
@@ -21,9 +21,12 @@ class RoomBackgroundElement extends StatelessWidget {
               height: SizeConfig.height(25.3),
             ),
           ),
-          Positioned(
-            left: SizeConfig.width(35),
-            top: SizeConfig.height(22),
+        ),
+        Positioned(
+          left: SizeConfig.width(35),
+          top: SizeConfig.height(22),
+          child: Hero(
+            tag: AnimationTag.backgroundElement2,
             child: Container(
               decoration: BoxDecoration(
                   color: AppColors.primaryLite.withOpacity(0.9),
@@ -32,9 +35,12 @@ class RoomBackgroundElement extends StatelessWidget {
               height: SizeConfig.height(25.3),
             ),
           ),
-          Positioned(
-            right: -SizeConfig.width(20),
-            top: -SizeConfig.height(9),
+        ),
+        Positioned(
+          right: -SizeConfig.width(20),
+          top: -SizeConfig.height(9),
+          child: Hero(
+            tag: AnimationTag.backgroundElement3,
             child: Container(
               decoration: BoxDecoration(
                   color: AppColors.primaryLite.withOpacity(0.3),
@@ -42,9 +48,9 @@ class RoomBackgroundElement extends StatelessWidget {
               width: SizeConfig.height(25.3),
               height: SizeConfig.height(25.3),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
