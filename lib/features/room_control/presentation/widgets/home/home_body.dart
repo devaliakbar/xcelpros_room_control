@@ -55,47 +55,55 @@ class HomeBody extends StatelessWidget {
   }
 
   Widget _buildCard(int index) {
-    return Card(
-      elevation: 0.3,
+    return Container(
       margin: EdgeInsets.only(left: margin, bottom: margin),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          SizeConfig.width(7),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            SizeConfig.width(7),
+          ),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
       ),
-      child: Container(
-        height: SizeConfig.width(40),
-        width: SizeConfig.width(42.5),
-        padding: EdgeInsets.all(SizeConfig.width(5)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image.asset(
-              rooms[index].imagePath,
-              fit: BoxFit.fitWidth,
-              width: SizeConfig.width(15),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                NormalText(
-                  rooms[index].roomName,
-                  boldText: true,
-                  size: FontSizes.fontSizeL,
-                ),
-                SizedBox(
-                  height: SizeConfig.height(0.7),
-                ),
-                NormalText(
-                  "${rooms[index].noOfLight} Light",
-                  boldText: true,
-                  color: AppColors.yellow,
-                )
-              ],
-            )
-          ],
-        ),
+      height: SizeConfig.width(40),
+      width: SizeConfig.width(42.5),
+      padding: EdgeInsets.all(SizeConfig.width(5)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(
+            rooms[index].imagePath,
+            fit: BoxFit.fitWidth,
+            width: SizeConfig.width(15),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              NormalText(
+                rooms[index].roomName,
+                boldText: true,
+                size: FontSizes.fontSizeL,
+              ),
+              SizedBox(
+                height: SizeConfig.height(0.7),
+              ),
+              NormalText(
+                "${rooms[index].noOfLight} Light",
+                boldText: true,
+                color: AppColors.yellow,
+              )
+            ],
+          )
+        ],
       ),
     );
   }
