@@ -5,6 +5,7 @@ import 'package:room_control/features/room_control/presentation/widgets/bottom_n
 import 'package:room_control/features/room_control/presentation/widgets/room/room_background_element.dart';
 import 'package:room_control/features/room_control/presentation/widgets/room/room_body.dart';
 import 'package:room_control/features/room_control/presentation/widgets/room/room_lamp.dart';
+import 'package:room_control/features/room_control/presentation/widgets/room/room_lights.dart';
 import 'package:room_control/features/room_control/presentation/widgets/room/room_title.dart';
 
 class RoomPage extends StatefulWidget {
@@ -50,6 +51,9 @@ class _RoomPageState extends State<RoomPage> {
                         RoomTitle(),
                         RoomLamp(),
                       ],
+                    ),
+                    RoomLights(
+                      numberOfLights: 4,
                     ),
                   ],
                 ),
