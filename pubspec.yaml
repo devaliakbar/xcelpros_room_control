@@ -33,6 +33,16 @@ flutter:
     - assets/images/mask.png
     - assets/images/loading_icon.png
     - assets/images/app_icon.png
+    - assets/images/user.png
+    - assets/images/bed.png
+    - assets/images/room.png
+    - assets/images/kitchen.png
+    - assets/images/bathtube.png
+    - assets/images/house.png
+    - assets/images/balcony.png
+    - assets/images/icon_bulb.png
+    - assets/images/icon_settings.png
+    - assets/images/icon_home.png
 
   fonts:
     - family: SFPro

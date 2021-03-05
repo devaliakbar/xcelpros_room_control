@@ -28,4 +28,8 @@ class FontSizes {
   static double get fontSizeXL {
     return SizeConfig.height(3);
   }
+
+  static double get fontSizeXXL {
+    return SizeConfig.height(3.4);
+  }
 }
