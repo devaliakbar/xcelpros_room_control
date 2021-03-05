@@ -20,7 +20,7 @@ class HomeBackgroundElements extends StatelessWidget {
         ),
         Positioned(
           left: -SizeConfig.width(1.8),
-          top: SizeConfig.height(17.7),
+          top: SizeConfig.height(17),
           child: Container(
             decoration: BoxDecoration(
                 color: AppColors.primaryLite.withOpacity(0.9),
