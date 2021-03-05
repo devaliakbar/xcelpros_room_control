@@ -4,6 +4,7 @@ import 'package:room_control/features/auth/presentation/pages/auth_loading_page.
 import 'package:room_control/features/auth/presentation/pages/login_page.dart';
 import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:room_control/features/room_control/presentation/pages/home_page.dart';
+import 'package:room_control/features/room_control/presentation/pages/room_page.dart';
 import 'package:room_control/features/welcome/presentation/pages/splash_screen.dart';
 
 class AppRouter {
@@ -38,6 +39,12 @@ class AppRouter {
       case HomePage.routeName:
         return PageTransitionAnimation(
           child: HomePage(),
+          settings: settings,
+        );
+
+      case RoomPage.routeName:
+        return PageTransitionAnimation(
+          child: RoomPage(),
           settings: settings,
         );
 

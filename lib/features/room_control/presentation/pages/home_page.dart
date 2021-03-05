@@ -23,13 +23,13 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   CustomAnimation(
-                    animationDuration: Duration(seconds: 1),
+                    animationDuration: Duration(milliseconds: 500),
                     customAnimationType: CustomAnimationType.topToBottom,
                     widget: HomeHeader(),
                   ),
                   Expanded(
                     child: CustomAnimation(
-                      animationDuration: Duration(seconds: 1),
+                      animationDuration: Duration(milliseconds: 500),
                       customAnimationType: CustomAnimationType.bottomToTop,
                       widget: HomeBody(),
                     ),

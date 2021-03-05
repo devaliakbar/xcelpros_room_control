@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 import 'package:room_control/features/room_control/domain/entities/room.dart';
+import 'package:room_control/features/room_control/presentation/pages/room_page.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
+  @override
+  _HomeBodyState createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  bool hideBody = false;
+
   final List<Room> rooms = [
     Room(roomName: "Bed Room", imagePath: AppImages.bed, noOfLight: 4),
     Room(
@@ -19,91 +28,109 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(right: margin, top: margin, bottom: margin),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(SizeConfig.width(8)),
-          topRight: Radius.circular(SizeConfig.width(8)),
-        ),
-      ),
-      child: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(left: margin, bottom: SizeConfig.height(3)),
-            alignment: Alignment.topLeft,
-            child: NormalText(
-              "All Rooms",
-              color: AppColors.blue,
-              boldText: true,
-              size: FontSizes.fontSizeL,
-            ),
+    return Hero(
+      tag: AnimationTag.homeBody,
+      child: Container(
+        padding: EdgeInsets.only(right: margin, top: margin, bottom: margin),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(SizeConfig.width(8)),
+            topRight: Radius.circular(SizeConfig.width(8)),
           ),
-          Expanded(
-            child: GridView.builder(
-                itemCount: rooms.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (BuildContext context, int index) {
-                  return _buildCard(index);
-                }),
-          )
-        ],
+        ),
+        child: hideBody
+            ? Container()
+            : Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: margin, bottom: SizeConfig.height(3)),
+                    alignment: Alignment.topLeft,
+                    child: NormalText(
+                      "All Rooms",
+                      color: AppColors.blue,
+                      boldText: true,
+                      size: FontSizes.fontSizeL,
+                    ),
+                  ),
+                  Expanded(
+                    child: GridView.builder(
+                        itemCount: rooms.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2),
+                        itemBuilder: (BuildContext _, int index) {
+                          return _buildCard(index);
+                        }),
+                  )
+                ],
+              ),
       ),
     );
   }
 
   Widget _buildCard(int index) {
-    return Container(
-      margin: EdgeInsets.only(left: margin, bottom: margin),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(
-            SizeConfig.width(7),
+    return InkWell(
+      onTap: () async {
+        setState(() {
+          hideBody = true;
+        });
+        await Navigator.pushNamed(context, RoomPage.routeName);
+        await Future.delayed(Duration(milliseconds: 100));
+        setState(() {
+          hideBody = false;
+        });
+      },
+      child: Container(
+        margin: EdgeInsets.only(left: margin, bottom: margin),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              SizeConfig.width(7),
+            ),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              spreadRadius: 1,
+              blurRadius: 2,
+              offset: Offset(0, 3),
+            ),
+          ],
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
-      height: SizeConfig.width(40),
-      width: SizeConfig.width(42.5),
-      padding: EdgeInsets.all(SizeConfig.width(5)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset(
-            rooms[index].imagePath,
-            fit: BoxFit.fitWidth,
-            width: SizeConfig.width(15),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              NormalText(
-                rooms[index].roomName,
-                boldText: true,
-                size: FontSizes.fontSizeL,
-              ),
-              SizedBox(
-                height: SizeConfig.height(0.7),
-              ),
-              NormalText(
-                "${rooms[index].noOfLight} Light",
-                boldText: true,
-                color: AppColors.yellow,
-              )
-            ],
-          )
-        ],
+        height: SizeConfig.width(40),
+        width: SizeConfig.width(42.5),
+        padding: EdgeInsets.all(SizeConfig.width(5)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset(
+              rooms[index].imagePath,
+              fit: BoxFit.fitWidth,
+              width: SizeConfig.width(15),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                NormalText(
+                  rooms[index].roomName,
+                  boldText: true,
+                  size: FontSizes.fontSizeL,
+                ),
+                SizedBox(
+                  height: SizeConfig.height(0.7),
+                ),
+                NormalText(
+                  "${rooms[index].noOfLight} Light",
+                  boldText: true,
+                  color: AppColors.yellow,
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

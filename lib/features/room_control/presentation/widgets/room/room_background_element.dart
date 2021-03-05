@@ -3,7 +3,7 @@ import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 
-class HomeBackgroundElements extends StatelessWidget {
+class RoomBackgroundElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
