@@ -14,4 +14,5 @@ class AppImages {
   static const String iconBulb = "assets/images/icon_bulb.png";
   static const String iconSettings = "assets/images/icon_settings.png";
   static const String iconHome = "assets/images/icon_home.png";
+  static const String lamp = "assets/images/lamp.png";
 }

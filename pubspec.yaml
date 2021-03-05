@@ -43,6 +43,7 @@ flutter:
     - assets/images/icon_bulb.png
     - assets/images/icon_settings.png
     - assets/images/icon_home.png
+    - assets/images/lamp.png
 
   fonts:
     - family: SFPro
