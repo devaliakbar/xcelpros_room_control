@@ -11,8 +11,8 @@ class RoomBackgroundElement extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: -SizeConfig.width(20),
-            top: -SizeConfig.height(12.6),
+            left: -SizeConfig.width(25),
+            top: SizeConfig.height(6),
             child: Container(
               decoration: BoxDecoration(
                   color: AppColors.primaryLite.withOpacity(0.3),
@@ -22,8 +22,8 @@ class RoomBackgroundElement extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: -SizeConfig.width(1.8),
-            top: SizeConfig.height(17),
+            left: SizeConfig.width(35),
+            top: SizeConfig.height(22),
             child: Container(
               decoration: BoxDecoration(
                   color: AppColors.primaryLite.withOpacity(0.9),
@@ -33,8 +33,8 @@ class RoomBackgroundElement extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: -SizeConfig.width(23),
-            top: SizeConfig.height(7.5),
+            right: -SizeConfig.width(20),
+            top: -SizeConfig.height(9),
             child: Container(
               decoration: BoxDecoration(
                   color: AppColors.primaryLite.withOpacity(0.3),

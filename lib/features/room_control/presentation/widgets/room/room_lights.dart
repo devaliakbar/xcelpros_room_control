@@ -27,10 +27,10 @@ class _RoomLightsState extends State<RoomLights> {
 
   final List<Light> lights = [
     Light(name: "Main Light", icon: Icons.bubble_chart),
+    Light(name: "Desk Light", icon: Icons.bubble_chart),
+    Light(name: "Bed Light", icon: Icons.bubble_chart),
     Light(name: "Main Light", icon: Icons.bubble_chart),
-    Light(name: "Main Light", icon: Icons.bubble_chart),
-    Light(name: "Main Light", icon: Icons.bubble_chart),
-    Light(name: "Main Light", icon: Icons.bubble_chart)
+    Light(name: "Desk Light", icon: Icons.bubble_chart)
   ];
 
   @override
