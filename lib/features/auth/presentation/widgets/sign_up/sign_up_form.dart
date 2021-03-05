@@ -94,6 +94,7 @@ class _SignUpformState extends State<SignUpform> {
                     controller: _emailcontroller,
                     validator: onValidateEmail,
                     onChanged: onFormValueChange,
+                    iconSize: IconSizes.iconSizeBXSS,
                   ),
                 ],
               ),

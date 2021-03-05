@@ -11,6 +11,7 @@ class AuthTextField extends StatelessWidget {
   final bool obsecure;
   final FormFieldValidator<String> validator;
   final ValueChanged<String> onChanged;
+  final double iconSize;
 
   AuthTextField(
       {@required this.label,
@@ -19,7 +20,8 @@ class AuthTextField extends StatelessWidget {
       this.obsecure = false,
       this.validator,
       this.inputType = TextInputType.text,
-      this.onChanged});
+      this.onChanged,
+      this.iconSize});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class AuthTextField extends StatelessWidget {
       children: [
         Icon(
           icon,
-          size: IconSizes.iconSizeS,
+          size: iconSize ?? IconSizes.iconSizeS,
           color: AppColors.black,
         ),
         SizedBox(

@@ -5,6 +5,10 @@ class IconSizes {
     return SizeConfig.height(2.4);
   }
 
+  static double get iconSizeBXSS {
+    return SizeConfig.height(2.6);
+  }
+
   static double get iconSizeS {
     return SizeConfig.height(2.8);
   }
