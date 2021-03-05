@@ -47,7 +47,7 @@ class _RoomLightsState extends State<RoomLights> {
         alignment: Alignment.topLeft,
         margin: EdgeInsets.only(
           left: SizeConfig.width(5),
-          top: SizeConfig.width(3),
+          top: SizeConfig.height(4),
           bottom: SizeConfig.width(9),
         ),
         child: SingleChildScrollView(

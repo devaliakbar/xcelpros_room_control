@@ -11,67 +11,64 @@ class RoomTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.all(
-          SizeConfig.width(5),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back_rounded,
-                        color: Colors.white,
-                        size: IconSizes.iconSizeS,
-                      ),
-                      SizedBox(
-                        width: SizeConfig.width(1),
-                      ),
-                      NormalText(
-                        "Bed",
-                        color: Colors.white,
-                        boldText: true,
-                        size: FontSizes.fontSizeXXL,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: SizeConfig.height(0.5),
-                  ),
-                  NormalText(
-                    "Room",
-                    color: Colors.white,
-                    boldText: true,
-                    size: FontSizes.fontSizeXXL,
-                  ),
-                ],
-              ),
+    return Padding(
+      padding:
+          EdgeInsets.only(left: SizeConfig.width(5), top: SizeConfig.height(9)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back_rounded,
+                      color: Colors.white,
+                      size: IconSizes.iconSizeS,
+                    ),
+                    SizedBox(
+                      width: SizeConfig.width(1),
+                    ),
+                    NormalText(
+                      "Bed",
+                      color: Colors.white,
+                      boldText: true,
+                      size: FontSizes.fontSizeXXL,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: SizeConfig.height(0.5),
+                ),
+                NormalText(
+                  "Room",
+                  color: Colors.white,
+                  boldText: true,
+                  size: FontSizes.fontSizeXXL,
+                ),
+              ],
             ),
-            SizedBox(
-              height: SizeConfig.height(1.5),
+          ),
+          SizedBox(
+            height: SizeConfig.height(1.5),
+          ),
+          CustomAnimation(
+            animationController: animationController,
+            customAnimationType: CustomAnimationType.topToBottom,
+            playAnimation: false,
+            widget: NormalText(
+              "4 Lights",
+              color: AppColors.yellowBulb,
+              boldText: true,
+              size: FontSizes.fontSizeL,
             ),
-            CustomAnimation(
-              animationController: animationController,
-              customAnimationType: CustomAnimationType.topToBottom,
-              playAnimation: false,
-              widget: NormalText(
-                "4 Lights",
-                color: AppColors.yellowBulb,
-                boldText: true,
-                size: FontSizes.fontSizeL,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

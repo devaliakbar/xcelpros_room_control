@@ -50,7 +50,7 @@ class RoomLamp extends StatelessWidget {
             child: Column(
               children: [
                 AnimatedContainer(
-                  duration: Duration(milliseconds: 400),
+                  duration: Duration(milliseconds: 500),
                   width: SizeConfig.width(1.5),
                   height:
                       SizeConfig.heightWithoutSafeArea(isPageLoaded ? 9 : 4),
