@@ -15,19 +15,26 @@ class RoomPage extends StatefulWidget {
   _RoomPageState createState() => _RoomPageState();
 }
 
-class _RoomPageState extends State<RoomPage> {
-  ///[hideSomeWidget] is for smoothing page transition.
-  bool hideSomeWidget = true;
+class _RoomPageState extends State<RoomPage>
+    with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+
+  ///[isPageLoaded] is for smoothing page transition.
+  bool isPageLoaded = false;
 
   @override
   void initState() {
     super.initState();
 
+    animationController =
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Future.delayed(Duration(milliseconds: 700));
       setState(() {
-        hideSomeWidget = false;
+        isPageLoaded = true;
       });
+      animationController.forward();
     });
   }
 
@@ -48,17 +55,18 @@ class _RoomPageState extends State<RoomPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        RoomTitle(),
-                        RoomLamp(hideLamp: hideSomeWidget),
+                        RoomTitle(animationController: animationController),
+                        RoomLamp(isPageLoaded: isPageLoaded),
                       ],
                     ),
                     RoomLights(
                       numberOfLights: 4,
+                      animationController: animationController,
                     ),
                   ],
                 ),
                 Expanded(
-                  child: RoomBody(hideBody: hideSomeWidget),
+                  child: RoomBody(showBody: isPageLoaded),
                 ),
               ],
             )

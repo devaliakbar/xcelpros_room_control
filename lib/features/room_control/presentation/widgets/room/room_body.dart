@@ -4,8 +4,8 @@ import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 
 class RoomBody extends StatelessWidget {
-  final bool hideBody;
-  RoomBody({@required this.hideBody});
+  final bool showBody;
+  RoomBody({@required this.showBody});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,11 @@ class RoomBody extends StatelessWidget {
             topRight: Radius.circular(SizeConfig.width(8)),
           ),
         ),
-        child: hideBody
-            ? Container()
-            : Center(
+        child: showBody
+            ? Center(
                 child: FlutterLogo(),
-              ),
+              )
+            : Container(),
       ),
     );
   }
