@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
+import 'package:room_control/core/res/icon/room_control_icons_icons.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/utils/utils.dart';
 import 'package:room_control/core/widgets/custom_button.dart';
@@ -67,7 +68,7 @@ class _SignUpformState extends State<SignUpform> {
                 children: [
                   AuthTextField(
                     label: AppString.username,
-                    icon: Icons.person_outline,
+                    icon: RoomControlIcons.Username,
                     controller: _userNamecontroller,
                     validator: onValidateUsername,
                     onChanged: onFormValueChange,
@@ -77,7 +78,7 @@ class _SignUpformState extends State<SignUpform> {
                   ),
                   AuthTextField(
                     label: AppString.password,
-                    icon: Icons.lock_open_outlined,
+                    icon: RoomControlIcons.Password,
                     obsecure: true,
                     controller: _passwordcontroller,
                     validator: onValidatePassword,
@@ -88,7 +89,7 @@ class _SignUpformState extends State<SignUpform> {
                   ),
                   AuthTextField(
                     label: AppString.email,
-                    icon: Icons.email_outlined,
+                    icon: RoomControlIcons.Email,
                     inputType: TextInputType.emailAddress,
                     controller: _emailcontroller,
                     validator: onValidateEmail,

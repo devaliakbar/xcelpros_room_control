@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/res/app_resources.dart';
+import 'package:room_control/core/res/icon/room_control_icons_icons.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 
@@ -36,13 +37,11 @@ class _AuthLoadingAnimationState extends State<AuthLoadingAnimation>
     _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
           tween: Tween<double>(
-              begin: SizeConfig.widthWithoutSafeArea(15),
-              end: SizeConfig.widthWithoutSafeArea(7)),
+              begin: IconSizes.loadingIconSize, end: IconSizes.iconSizeM),
           weight: 50),
       TweenSequenceItem<double>(
           tween: Tween<double>(
-              begin: SizeConfig.widthWithoutSafeArea(7),
-              end: SizeConfig.widthWithoutSafeArea(15)),
+              begin: IconSizes.iconSizeM, end: IconSizes.loadingIconSize),
           weight: 50),
     ]).animate(_curve);
 
@@ -70,12 +69,10 @@ class _AuthLoadingAnimationState extends State<AuthLoadingAnimation>
               builder: (_, child) {
                 return Transform.rotate(
                   angle: _rotationAnimation.value * 2 * math.pi,
-                  child: Container(
-                    width: _sizeAnimation.value,
-                    child: Image.asset(
-                      AppImages.loadingIcon,
-                      fit: BoxFit.fitWidth,
-                    ),
+                  child: Icon(
+                    RoomControlIcons.Loading,
+                    color: AppColors.loading,
+                    size: _sizeAnimation.value,
                   ),
                 );
               },

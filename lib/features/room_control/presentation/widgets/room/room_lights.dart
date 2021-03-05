@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
+import 'package:room_control/core/res/icon/room_control_icons_icons.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 import 'package:room_control/features/room_control/domain/entities/light.dart';
@@ -30,11 +31,11 @@ class _RoomLightsState extends State<RoomLights> {
   }
 
   final List<Light> lights = [
-    Light(name: "Main Light", icon: Icons.bubble_chart),
-    Light(name: "Desk Light", icon: Icons.bubble_chart),
-    Light(name: "Bed Light", icon: Icons.bubble_chart),
-    Light(name: "Main Light", icon: Icons.bubble_chart),
-    Light(name: "Desk Light", icon: Icons.bubble_chart)
+    Light(name: "Main Light", icon: RoomControlIcons.Bulb),
+    Light(name: "Desk Light", icon: RoomControlIcons.Desk),
+    Light(name: "Bed Light", icon: RoomControlIcons.Bed),
+    Light(name: "Main Light", icon: RoomControlIcons.Bulb),
+    Light(name: "Desk Light", icon: RoomControlIcons.Desk)
   ];
 
   @override
@@ -80,13 +81,13 @@ class _RoomLightsState extends State<RoomLights> {
                         children: [
                           Icon(
                             lights[index].icon,
-                            size: IconSizes.iconSizeL,
+                            size: IconSizes.iconSizeXS,
                             color: selectedIndex == index
                                 ? Colors.white
                                 : AppColors.secondary,
                           ),
                           SizedBox(
-                            width: SizeConfig.width(2),
+                            width: SizeConfig.width(4),
                           ),
                           NormalText(
                             lights[index].name,

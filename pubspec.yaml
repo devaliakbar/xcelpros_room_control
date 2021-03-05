@@ -31,7 +31,6 @@ flutter:
   assets:
     - assets/lang/en-US.json
     - assets/images/mask.png
-    - assets/images/loading_icon.png
     - assets/images/app_icon.png
     - assets/images/user.png
     - assets/images/bed.png
@@ -49,3 +48,7 @@ flutter:
     - family: SFPro
       fonts:
         - asset: assets/fonts/SFPro/SFProDisplay-Regular.ttf
+
+    - family: RoomControlIcons
+      fonts:
+        - asset: assets/icons/RoomControlIcons.ttf

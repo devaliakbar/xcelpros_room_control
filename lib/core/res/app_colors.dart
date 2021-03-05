@@ -17,4 +17,6 @@ class AppColors {
   static final Color yellow = HexColor("#ffa939");
 
   static final Color yellowBulb = HexColor("#ffd239");
+
+  static final Color loading = HexColor("#9afdcd");
 }

@@ -28,7 +28,7 @@ class AuthTextField extends StatelessWidget {
       children: [
         Icon(
           icon,
-          size: IconSizes.iconSizeXL,
+          size: IconSizes.iconSizeS,
           color: AppColors.black,
         ),
         SizedBox(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
+import 'package:room_control/core/res/icon/room_control_icons_icons.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/custom_button.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
@@ -64,7 +65,7 @@ class _LoginformState extends State<Loginform> {
               animationController: widget.animationController,
               widget: AuthTextField(
                 label: AppString.username,
-                icon: Icons.person_outline,
+                icon: RoomControlIcons.Username,
                 validator: onValidateUsername,
                 controller: _userNamecontroller,
                 onChanged: onTextChange,
@@ -76,7 +77,7 @@ class _LoginformState extends State<Loginform> {
               widget: AuthTextField(
                 label: AppString.password,
                 validator: onValidatePassword,
-                icon: Icons.lock_open_outlined,
+                icon: RoomControlIcons.Password,
                 controller: _passwordcontroller,
                 obsecure: true,
                 onChanged: onTextChange,

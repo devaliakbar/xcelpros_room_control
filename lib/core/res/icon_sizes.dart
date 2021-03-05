@@ -17,7 +17,7 @@ class IconSizes {
     return SizeConfig.height(3.6);
   }
 
-  static double get iconSizeXL {
-    return SizeConfig.height(4);
+  static double get loadingIconSize {
+    return SizeConfig.height(7);
   }
 }
