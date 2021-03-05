@@ -4,7 +4,7 @@ import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/features/auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:room_control/features/auth/presentation/pages/auth_loading_page.dart';
-import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
+import 'package:room_control/core/widgets/app_background.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
 import 'package:room_control/features/auth/presentation/widgets/sign_up/sign_up_back_icon.dart';
 import 'package:room_control/features/auth/presentation/widgets/sign_up/sign_up_form.dart';
@@ -64,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
         child: Scaffold(
           backgroundColor: AppColors.primary,
           body: SingleChildScrollView(
-            child: AuthBackground(
+            child: AppBackground(
               child: Stack(
                 children: [
                   AuthMask(

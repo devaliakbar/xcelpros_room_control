@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 
-class AuthBackground extends StatelessWidget {
+class AppBackground extends StatelessWidget {
   final Widget child;
 
-  AuthBackground({@required this.child});
+  AppBackground({@required this.child});
 
   @override
   Widget build(BuildContext context) {

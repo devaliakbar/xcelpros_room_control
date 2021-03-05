@@ -17,6 +17,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
     await Future.delayed(Duration(seconds: 4));
 
+    //For Demo
     if (email == "ali" && password == "12345678") {
       return AuthModel();
     }
@@ -31,6 +32,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
     //Connect with API
     await Future.delayed(Duration(seconds: 4));
 
+    //For Demo
     if (username == "ali") {
       ///IF Username taken , Throw [UsernameTakenException]
       throw UsernameTakenException();

@@ -3,6 +3,7 @@ import 'package:room_control/core/animation/page_transition_animation.dart';
 import 'package:room_control/features/auth/presentation/pages/auth_loading_page.dart';
 import 'package:room_control/features/auth/presentation/pages/login_page.dart';
 import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
+import 'package:room_control/features/room_control/presentation/pages/home_page.dart';
 import 'package:room_control/features/welcome/presentation/pages/splash_screen.dart';
 
 class AppRouter {
@@ -25,11 +26,18 @@ class AppRouter {
             child: SignUpPage(),
             settings: settings,
             showFadeEffect: false,
-            duration: Duration(milliseconds: 200));
+            duration: Duration(milliseconds: 200),
+            reverseDuration: Duration(milliseconds: 200));
 
       case AuthLoadingPage.routeName:
         return PageTransitionAnimation(
           child: AuthLoadingPage(),
+          settings: settings,
+        );
+
+      case HomePage.routeName:
+        return PageTransitionAnimation(
+          child: HomePage(),
           settings: settings,
         );
 

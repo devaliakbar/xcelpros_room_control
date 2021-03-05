@@ -5,7 +5,7 @@ import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:room_control/features/auth/presentation/pages/auth_loading_page.dart';
 import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
-import 'package:room_control/features/auth/presentation/widgets/auth_background.dart';
+import 'package:room_control/core/widgets/app_background.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
 import 'package:room_control/features/auth/presentation/widgets/login/login_form.dart';
 import 'package:room_control/features/auth/presentation/widgets/login/login_top_title.dart';
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
       child: Scaffold(
         backgroundColor: AppColors.primary,
         body: SingleChildScrollView(
-          child: AuthBackground(
+          child: AppBackground(
             child: Stack(
               children: [
                 AuthMask(
