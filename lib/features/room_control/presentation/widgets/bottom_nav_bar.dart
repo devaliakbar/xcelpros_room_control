@@ -17,7 +17,8 @@ class BottomNavBar extends StatelessWidget {
           ),
         ],
       ),
-      padding: EdgeInsets.only(top: SizeConfig.heightWithoutSafeArea(2)),
+      padding:
+          EdgeInsets.symmetric(vertical: SizeConfig.heightWithoutSafeArea(2.5)),
       child: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

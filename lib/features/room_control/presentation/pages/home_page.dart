@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/widgets/app_background.dart';
 import 'package:room_control/features/room_control/presentation/widgets/bottom_nav_bar.dart';
@@ -21,9 +22,17 @@ class HomePage extends StatelessWidget {
             SafeArea(
               child: Column(
                 children: [
-                  HomeHeader(),
+                  CustomAnimation(
+                    animationDuration: Duration(milliseconds: 400),
+                    customAnimationType: CustomAnimationType.topToBottom,
+                    widget: HomeHeader(),
+                  ),
                   Expanded(
-                    child: HomeBody(),
+                    child: CustomAnimation(
+                      animationDuration: Duration(milliseconds: 400),
+                      customAnimationType: CustomAnimationType.bottomToTop,
+                      widget: HomeBody(),
+                    ),
                   )
                 ],
               ),
