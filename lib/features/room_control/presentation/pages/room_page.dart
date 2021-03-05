@@ -17,16 +17,16 @@ class RoomPage extends StatefulWidget {
 
 class _RoomPageState extends State<RoomPage> {
   ///[hideSomeWidget] is for smoothing page transition.
-  bool hideBody = true;
+  bool hideSomeWidget = true;
 
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 700));
       setState(() {
-        hideBody = false;
+        hideSomeWidget = false;
       });
     });
   }
@@ -49,7 +49,7 @@ class _RoomPageState extends State<RoomPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RoomTitle(),
-                        RoomLamp(),
+                        RoomLamp(hideLamp: hideSomeWidget),
                       ],
                     ),
                     RoomLights(
@@ -58,7 +58,7 @@ class _RoomPageState extends State<RoomPage> {
                   ],
                 ),
                 Expanded(
-                  child: RoomBody(hideBody: hideBody),
+                  child: RoomBody(hideBody: hideSomeWidget),
                 ),
               ],
             )
