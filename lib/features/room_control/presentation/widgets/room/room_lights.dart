@@ -47,10 +47,9 @@ class _RoomLightsState extends State<RoomLights> {
       widget: Container(
         alignment: Alignment.topLeft,
         margin: EdgeInsets.only(
-          left: SizeConfig.width(5),
-          top: SizeConfig.height(4),
-          bottom: SizeConfig.width(9),
-        ),
+            left: SizeConfig.width(5),
+            top: SizeConfig.height(4),
+            bottom: SizeConfig.height(1.5)),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -75,7 +74,7 @@ class _RoomLightsState extends State<RoomLights> {
                     ),
                     child: Container(
                       padding: EdgeInsets.symmetric(
-                          vertical: SizeConfig.width(3),
+                          vertical: SizeConfig.height(2),
                           horizontal: SizeConfig.width(4)),
                       child: Row(
                         children: [
