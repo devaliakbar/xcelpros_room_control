@@ -22,27 +22,22 @@ class _AuthLoadingAnimationState extends State<AuthLoadingAnimation>
     super.initState();
 
     _loadingcontroller = AnimationController(
-      duration: const Duration(milliseconds: 1600),
+      duration: const Duration(milliseconds: 1300),
       vsync: this,
     );
     _curve = CurvedAnimation(parent: _loadingcontroller, curve: Curves.easeOut);
 
-    _rotationAnimation = TweenSequence(<TweenSequenceItem<double>>[
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0, end: 0.5), weight: 50),
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0, end: 0.5), weight: 50)
-    ]).animate(_curve);
+    _rotationAnimation = Tween<double>(begin: 0, end: 0.5).animate(_curve);
 
     _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
           tween: Tween<double>(
               begin: IconSizes.loadingIconSize, end: IconSizes.iconSizeM),
-          weight: 50),
+          weight: 70),
       TweenSequenceItem<double>(
           tween: Tween<double>(
               begin: IconSizes.iconSizeM, end: IconSizes.loadingIconSize),
-          weight: 50),
+          weight: 30),
     ]).animate(_curve);
 
     _loadingcontroller.repeat();
