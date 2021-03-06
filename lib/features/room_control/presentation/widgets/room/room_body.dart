@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
+import 'package:room_control/features/room_control/presentation/providers/room_provider.dart';
 import 'package:room_control/features/room_control/presentation/widgets/room/room_body/room_body_colors.dart';
 import 'package:room_control/features/room_control/presentation/widgets/room/room_body/room_body_scenes.dart';
 
@@ -56,17 +58,25 @@ class RoomBody extends StatelessWidget {
         ),
         Positioned(
           right: SizeConfig.width(5),
-          child: Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(SizeConfig.height(4)),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(SizeConfig.height(0.4)),
-              child: Icon(
-                Icons.power_settings_new_rounded,
-                color: AppColors.power,
-                size: IconSizes.iconSizeL,
+          child: InkWell(
+            onTap: () {
+              if (isPageLoaded) {
+                Provider.of<RoomProvider>(context, listen: false)
+                    .changeBulbIntensity(0);
+              }
+            },
+            child: Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(SizeConfig.height(4)),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(SizeConfig.height(0.4)),
+                child: Icon(
+                  Icons.power_settings_new_rounded,
+                  color: AppColors.power,
+                  size: IconSizes.iconSizeL,
+                ),
               ),
             ),
           ),
