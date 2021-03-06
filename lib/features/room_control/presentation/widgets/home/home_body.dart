@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:room_control/core/animation/animation_tag.dart';
+import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 import 'package:room_control/features/room_control/domain/entities/room.dart';
 import 'package:room_control/features/room_control/presentation/pages/room_page.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
+  @override
+  _HomeBodyState createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> with TickerProviderStateMixin {
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController =
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+  }
+
   final List<Room> rooms = [
     Room(roomName: "Bed Room", imagePath: AppImages.bed, noOfLight: 4),
     Room(
@@ -34,29 +49,33 @@ class HomeBody extends StatelessWidget {
               topRight: Radius.circular(SizeConfig.width(8)),
             ),
           ),
-          child: Column(
-            children: [
-              Container(
-                margin:
-                    EdgeInsets.only(left: margin, bottom: SizeConfig.height(3)),
-                alignment: Alignment.topLeft,
-                child: NormalText(
-                  AppString.allRooms,
-                  color: AppColors.blue,
-                  boldText: true,
-                  size: FontSizes.fontSizeL,
+          child: CustomAnimation(
+            animationController: animationController,
+            customAnimationType: CustomAnimationType.bottomToTop,
+            widget: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(
+                      left: margin, bottom: SizeConfig.height(3)),
+                  alignment: Alignment.topLeft,
+                  child: NormalText(
+                    AppString.allRooms,
+                    color: AppColors.blue,
+                    boldText: true,
+                    size: FontSizes.fontSizeL,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: GridView.builder(
-                    itemCount: rooms.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-                    itemBuilder: (BuildContext context, int index) {
-                      return _buildCard(context, index);
-                    }),
-              )
-            ],
+                Expanded(
+                  child: GridView.builder(
+                      itemCount: rooms.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2),
+                      itemBuilder: (BuildContext context, int index) {
+                        return _buildCard(context, index);
+                      }),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -66,8 +85,10 @@ class HomeBody extends StatelessWidget {
   Widget _buildCard(BuildContext context, int index) {
     return InkWell(
       onTap: () async {
-        Navigator.pushNamed(context, RoomPage.routeName,
+        animationController.reverse();
+        await Navigator.pushNamed(context, RoomPage.routeName,
             arguments: rooms[index]);
+        animationController.forward();
       },
       child: Container(
         margin: EdgeInsets.only(left: margin, bottom: margin),
