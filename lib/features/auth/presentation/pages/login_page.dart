@@ -22,12 +22,17 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   /// [_animationController] is for Username and PasswordTextField, button and signupText
   AnimationController animationController;
 
+  AnimationController bodyAnimationController;
+
   @override
   void initState() {
     super.initState();
 
     animationController =
         AnimationController(duration: Duration(milliseconds: 200), vsync: this);
+
+    bodyAnimationController =
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
   }
 
   @override
@@ -41,15 +46,13 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
     SizeConfig().init(context);
 
     return BlocListener<LoginBloc, LoginState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         print("Login Screen State Changed");
 
         if (state is LoginLoadingState) {
-          animationController.reverse().whenComplete(() async {
-            await Navigator.pushNamed(context, AuthLoadingPage.routeName);
-            await Future.delayed(Duration(milliseconds: 150));
-            animationController.forward();
-          });
+          bodyAnimationController.reverse();
+          await Navigator.pushNamed(context, AuthLoadingPage.routeName);
+          bodyAnimationController.forward();
         }
       },
       child: Scaffold(
@@ -72,19 +75,24 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       children: [
                         LoginTopTitle(),
                         Expanded(
-                          child: Loginform(
-                            animationController: animationController,
-                            onSignUp: () {
-                              animationController
-                                  .reverse()
-                                  .whenComplete(() async {
-                                await Navigator.pushNamed(
-                                    context, SignUpPage.routeName);
-                                await Future.delayed(
-                                    Duration(milliseconds: 150));
-                                animationController.forward();
-                              });
-                            },
+                          child: CustomAnimation(
+                            animationController: bodyAnimationController,
+                            customAnimationType:
+                                CustomAnimationType.bottomToTop,
+                            widget: Loginform(
+                              animationController: animationController,
+                              onSignUp: () {
+                                animationController
+                                    .reverse()
+                                    .whenComplete(() async {
+                                  await Navigator.pushNamed(
+                                      context, SignUpPage.routeName);
+                                  await Future.delayed(
+                                      Duration(milliseconds: 150));
+                                  animationController.forward();
+                                });
+                              },
+                            ),
                           ),
                         )
                       ],

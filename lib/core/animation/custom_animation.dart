@@ -76,9 +76,7 @@ class _CustomAnimationState extends State<CustomAnimation>
       _offset = Tween(begin: Offset(0, 0), end: Offset(0, 0)).animate(_curve);
 
       _controller.forward().whenComplete(() {
-        if (widget.showWidgetWithoutAnimation) {
-          _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);
-        }
+        _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);
       });
     } else {
       _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);

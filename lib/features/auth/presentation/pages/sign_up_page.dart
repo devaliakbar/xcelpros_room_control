@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/features/auth/presentation/blocs/sign_up/sign_up_bloc.dart';
@@ -21,6 +22,8 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   /// [_animationController] is for button, 3 textfields, terms and condiition and button
   AnimationController animationController;
 
+  AnimationController bodyAnimationController;
+
   /// [_expanded] is for smooothing form conatiner
   bool _expanded = false;
 
@@ -30,6 +33,9 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
 
     animationController =
         AnimationController(duration: Duration(milliseconds: 200), vsync: this);
+
+    bodyAnimationController =
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       setState(() {
@@ -48,15 +54,13 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignUpBloc, SignUpState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         print("Login Screen State Changed");
 
         if (state is SignUpLoadingState) {
-          animationController.reverse().whenComplete(() async {
-            await Navigator.pushNamed(context, AuthLoadingPage.routeName);
-            await Future.delayed(Duration(milliseconds: 150));
-            animationController.forward();
-          });
+          bodyAnimationController.reverse();
+          await Navigator.pushNamed(context, AuthLoadingPage.routeName);
+          bodyAnimationController.forward();
         }
       },
       child: WillPopScope(
@@ -91,8 +95,14 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
                         children: [
                           SignUpTopTitle(),
                           Expanded(
-                            child: SignUpform(
-                              animationController: animationController,
+                            child: CustomAnimation(
+                              animationController: bodyAnimationController,
+                              showWidgetWithoutAnimation: true,
+                              customAnimationType:
+                                  CustomAnimationType.bottomToTop,
+                              widget: SignUpform(
+                                animationController: animationController,
+                              ),
                             ),
                           )
                         ],
