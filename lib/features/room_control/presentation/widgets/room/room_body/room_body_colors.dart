@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 
-class RoomBodyColors extends StatelessWidget {
+class RoomBodyColors extends StatefulWidget {
   final AnimationController animationController;
   RoomBodyColors({@required this.animationController});
+
+  @override
+  _RoomBodyColorsState createState() => _RoomBodyColorsState();
+}
+
+class _RoomBodyColorsState extends State<RoomBodyColors> {
+  Animation _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animation =
+        IntTween(begin: 17, end: 0).animate(widget.animationController);
+    _animation.addListener(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
 
   final List<Color> colors = [
     AppColors.bulb1,
@@ -29,42 +47,51 @@ class RoomBodyColors extends StatelessWidget {
           color: AppColors.blue,
         ),
         SizedBox(
-          height: SizeConfig.height(2),
+          height: SizeConfig.height(3),
         ),
-        CustomAnimation(
-          animationController: animationController,
-          customAnimationType: CustomAnimationType.leftToRight,
-          playAnimation: false,
-          widget: Row(
-            children: [
-              for (int index = 0; index < (colors.length + 1); index++)
-                Expanded(
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Container(
-                      padding: EdgeInsets.all(SizeConfig.width(1.8)),
-                      margin: EdgeInsets.only(right: SizeConfig.width(4)),
-                      decoration: BoxDecoration(
-                        color: (index == colors.length)
-                            ? Colors.white
-                            : colors[index],
-                        shape: BoxShape.circle,
-                      ),
-                      child: (index == colors.length)
-                          ? FittedBox(
-                              child: Icon(
-                                Icons.add_sharp,
-                                color: AppColors.blue,
-                              ),
-                            )
-                          : null,
-                    ),
-                  ),
-                ),
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            for (int index = 0; index < (colors.length + 2); index++)
+              _buildColor(index),
+            Expanded(
+              flex: _animation.value,
+              child: Container(),
+            )
+          ],
         )
       ],
     );
+  }
+
+  Widget _buildColor(int index) {
+    return index == (colors.length + 1)
+        ? Container(
+            width: SizeConfig.width(5),
+          )
+        : Expanded(
+            flex: 5,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                width: SizeConfig.width(8),
+                height: SizeConfig.width(8),
+                padding: EdgeInsets.all(SizeConfig.width(1.8)),
+                decoration: BoxDecoration(
+                  color:
+                      (index == colors.length) ? Colors.white : colors[index],
+                  shape: BoxShape.circle,
+                ),
+                child: (index == colors.length)
+                    ? FittedBox(
+                        child: Icon(
+                          Icons.add_sharp,
+                          color: AppColors.blue,
+                        ),
+                      )
+                    : null,
+              ),
+            ),
+          );
   }
 }
