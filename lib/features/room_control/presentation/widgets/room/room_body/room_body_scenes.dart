@@ -15,7 +15,7 @@ class RoomBodyScenes extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         NormalText(
-          "Scenes",
+          AppString.scenes,
           size: FontSizes.fontSizeL,
           boldText: true,
           color: AppColors.blue,

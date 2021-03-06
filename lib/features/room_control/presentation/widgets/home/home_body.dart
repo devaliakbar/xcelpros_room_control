@@ -10,7 +10,7 @@ class HomeBody extends StatelessWidget {
   final List<Room> rooms = [
     Room(roomName: "Bed Room", imagePath: AppImages.bed, noOfLight: 4),
     Room(
-        roomName: "Living room", imagePath: AppImages.livingRoom, noOfLight: 2),
+        roomName: "Living Room", imagePath: AppImages.livingRoom, noOfLight: 2),
     Room(roomName: "Kitchen", imagePath: AppImages.kitchen, noOfLight: 5),
     Room(roomName: "Bathroom", imagePath: AppImages.bathtube, noOfLight: 1),
     Room(roomName: "Outdoor", imagePath: AppImages.house, noOfLight: 5),
@@ -41,7 +41,7 @@ class HomeBody extends StatelessWidget {
                     EdgeInsets.only(left: margin, bottom: SizeConfig.height(3)),
                 alignment: Alignment.topLeft,
                 child: NormalText(
-                  "All Rooms",
+                  AppString.allRooms,
                   color: AppColors.blue,
                   boldText: true,
                   size: FontSizes.fontSizeL,
@@ -66,7 +66,8 @@ class HomeBody extends StatelessWidget {
   Widget _buildCard(BuildContext context, int index) {
     return InkWell(
       onTap: () async {
-        await Navigator.pushNamed(context, RoomPage.routeName);
+        Navigator.pushNamed(context, RoomPage.routeName,
+            arguments: rooms[index]);
       },
       child: Container(
         margin: EdgeInsets.only(left: margin, bottom: margin),

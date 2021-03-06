@@ -43,7 +43,7 @@ class _RoomBodyColorsState extends State<RoomBodyColors> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         NormalText(
-          "Colors",
+          AppString.colors,
           size: FontSizes.fontSizeL,
           boldText: true,
           color: AppColors.blue,

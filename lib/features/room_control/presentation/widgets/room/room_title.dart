@@ -35,7 +35,7 @@ class RoomTitle extends StatelessWidget {
                       width: SizeConfig.width(1),
                     ),
                     NormalText(
-                      "Bed",
+                      AppString.bed,
                       color: Colors.white,
                       boldText: true,
                       size: FontSizes.fontSizeXXL,
@@ -46,7 +46,7 @@ class RoomTitle extends StatelessWidget {
                   height: SizeConfig.height(0.5),
                 ),
                 NormalText(
-                  "Room",
+                  AppString.room,
                   color: Colors.white,
                   boldText: true,
                   size: FontSizes.fontSizeXXL,
@@ -62,7 +62,7 @@ class RoomTitle extends StatelessWidget {
             customAnimationType: CustomAnimationType.topToBottom,
             playAnimation: false,
             widget: NormalText(
-              "4 Lights",
+              "4 ${AppString.lights}",
               color: AppColors.yellowBulb,
               boldText: true,
               size: FontSizes.fontSizeL,

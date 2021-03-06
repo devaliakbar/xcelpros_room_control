@@ -14,7 +14,7 @@ class HomeHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           NormalText(
-            "Control\nPanel",
+            AppString.controlPanel,
             color: Colors.white,
             boldText: true,
             size: FontSizes.fontSizeXXL,

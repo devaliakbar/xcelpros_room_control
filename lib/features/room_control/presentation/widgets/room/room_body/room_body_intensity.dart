@@ -17,7 +17,7 @@ class RoomBodyIntensity extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         NormalText(
-          "Intensity",
+          AppString.intensity,
           size: FontSizes.fontSizeL,
           boldText: true,
           color: AppColors.blue,

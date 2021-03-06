@@ -84,4 +84,36 @@ class AppString {
   static String get whiteSpaceError {
     return tr("white_space_error");
   }
+
+  static String get controlPanel {
+    return tr("control_panel");
+  }
+
+  static String get allRooms {
+    return tr("all_rooms");
+  }
+
+  static String get bed {
+    return tr("bed");
+  }
+
+  static String get room {
+    return tr("room");
+  }
+
+  static String get lights {
+    return tr("lights");
+  }
+
+  static String get intensity {
+    return tr("intensity");
+  }
+
+  static String get colors {
+    return tr("colors");
+  }
+
+  static String get scenes {
+    return tr("scenes");
+  }
 }

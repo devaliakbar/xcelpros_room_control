@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/widgets/app_background.dart';
+import 'package:room_control/features/room_control/domain/entities/room.dart';
 import 'package:room_control/features/room_control/presentation/providers/room_provider.dart';
 import 'package:room_control/features/room_control/presentation/widgets/bottom_nav_bar.dart';
 import 'package:room_control/features/room_control/presentation/widgets/room/room_background_element.dart';
@@ -12,6 +13,8 @@ import 'package:room_control/features/room_control/presentation/widgets/room/roo
 
 class RoomPage extends StatefulWidget {
   static const String routeName = '/room_page';
+  final Room room;
+  RoomPage({@required this.room});
 
   @override
   _RoomPageState createState() => _RoomPageState();
@@ -73,7 +76,7 @@ class _RoomPageState extends State<RoomPage>
                       ],
                     ),
                     RoomLights(
-                      numberOfLights: 4,
+                      numberOfLights: widget.room.noOfLight,
                       animationController: animationController,
                     ),
                   ],
