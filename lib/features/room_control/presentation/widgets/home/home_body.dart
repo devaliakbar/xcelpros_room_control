@@ -6,14 +6,7 @@ import 'package:room_control/core/widgets/normal_text.dart';
 import 'package:room_control/features/room_control/domain/entities/room.dart';
 import 'package:room_control/features/room_control/presentation/pages/room_page.dart';
 
-class HomeBody extends StatefulWidget {
-  @override
-  _HomeBodyState createState() => _HomeBodyState();
-}
-
-class _HomeBodyState extends State<HomeBody> {
-  bool hideBody = false;
-
+class HomeBody extends StatelessWidget {
   final List<Room> rooms = [
     Room(roomName: "Bed Room", imagePath: AppImages.bed, noOfLight: 4),
     Room(
@@ -30,56 +23,50 @@ class _HomeBodyState extends State<HomeBody> {
   Widget build(BuildContext context) {
     return Hero(
       tag: AnimationTag.homeBody,
-      child: Container(
-        padding: EdgeInsets.only(right: margin, top: margin, bottom: margin),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(SizeConfig.width(8)),
-            topRight: Radius.circular(SizeConfig.width(8)),
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          padding: EdgeInsets.only(right: margin, top: margin, bottom: margin),
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(SizeConfig.width(8)),
+              topRight: Radius.circular(SizeConfig.width(8)),
+            ),
+          ),
+          child: Column(
+            children: [
+              Container(
+                margin:
+                    EdgeInsets.only(left: margin, bottom: SizeConfig.height(3)),
+                alignment: Alignment.topLeft,
+                child: NormalText(
+                  "All Rooms",
+                  color: AppColors.blue,
+                  boldText: true,
+                  size: FontSizes.fontSizeL,
+                ),
+              ),
+              Expanded(
+                child: GridView.builder(
+                    itemCount: rooms.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
+                    itemBuilder: (BuildContext context, int index) {
+                      return _buildCard(context, index);
+                    }),
+              )
+            ],
           ),
         ),
-        child: hideBody
-            ? Container()
-            : Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: margin, bottom: SizeConfig.height(3)),
-                    alignment: Alignment.topLeft,
-                    child: NormalText(
-                      "All Rooms",
-                      color: AppColors.blue,
-                      boldText: true,
-                      size: FontSizes.fontSizeL,
-                    ),
-                  ),
-                  Expanded(
-                    child: GridView.builder(
-                        itemCount: rooms.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
-                        itemBuilder: (BuildContext _, int index) {
-                          return _buildCard(index);
-                        }),
-                  )
-                ],
-              ),
       ),
     );
   }
 
-  Widget _buildCard(int index) {
+  Widget _buildCard(BuildContext context, int index) {
     return InkWell(
       onTap: () async {
-        setState(() {
-          hideBody = true;
-        });
         await Navigator.pushNamed(context, RoomPage.routeName);
-        await Future.delayed(Duration(milliseconds: 100));
-        setState(() {
-          hideBody = false;
-        });
       },
       child: Container(
         margin: EdgeInsets.only(left: margin, bottom: margin),

@@ -19,7 +19,7 @@ class _RoomPageState extends State<RoomPage>
     with SingleTickerProviderStateMixin {
   AnimationController animationController;
 
-  ///[isPageLoaded] is for smoothing page transition.
+  ///[isPageLoaded] is for growing lamp when page is loaded
   bool isPageLoaded = false;
 
   @override
@@ -66,7 +66,7 @@ class _RoomPageState extends State<RoomPage>
                   ],
                 ),
                 Expanded(
-                  child: RoomBody(showBody: isPageLoaded),
+                  child: RoomBody(),
                 ),
               ],
             )
