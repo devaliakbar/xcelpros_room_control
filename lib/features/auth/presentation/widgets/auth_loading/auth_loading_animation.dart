@@ -17,30 +17,35 @@ class _AuthLoadingAnimationState extends State<AuthLoadingAnimation>
   Animation<double> _sizeAnimation, _rotationAnimation;
   Animation _curve;
 
+  bool _isBigToSmall = true;
+
   @override
   void initState() {
     super.initState();
 
     _loadingcontroller = AnimationController(
-      duration: const Duration(milliseconds: 1300),
+      duration: const Duration(milliseconds: 900),
       vsync: this,
     );
-    _curve = CurvedAnimation(parent: _loadingcontroller, curve: Curves.easeOut);
+    _curve =
+        CurvedAnimation(parent: _loadingcontroller, curve: Curves.elasticOut);
 
-    _rotationAnimation = Tween<double>(begin: 0, end: 0.5).animate(_curve);
+    /// INITIALLY ROATATE HALF AND SHRINK THE LOADING ICON. ONCE THAT COMPLETE CHANGE ANIMTION TO ROTATE ANOTHER HALF AND
+    /// EXPAND THE LOADING ICON. REPEATE THIS PROCESS. [_isBigToSmall] IS USED TO TRACK THE CURRENT STATE OF LOADER ICON.
+    /// [_setUpAnimation] FUNCTION HELPS TO CHANGE THE BEHAVIOUR OF THE ANIMATION USING [_isBigToSmall]
 
-    _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
-      TweenSequenceItem<double>(
-          tween: Tween<double>(
-              begin: IconSizes.loadingIconSize, end: IconSizes.iconSizeM),
-          weight: 70),
-      TweenSequenceItem<double>(
-          tween: Tween<double>(
-              begin: IconSizes.iconSizeM, end: IconSizes.loadingIconSize),
-          weight: 30),
-    ]).animate(_curve);
+    _setUpAnimation();
 
-    _loadingcontroller.repeat();
+    _loadingcontroller.forward();
+
+    _loadingcontroller.addStatusListener((status) async {
+      if (status == AnimationStatus.completed) {
+        _loadingcontroller.reset();
+        _isBigToSmall = !_isBigToSmall;
+        _setUpAnimation();
+        _loadingcontroller.forward();
+      }
+    });
   }
 
   @override
@@ -88,5 +93,21 @@ class _AuthLoadingAnimationState extends State<AuthLoadingAnimation>
         ],
       ),
     );
+  }
+
+  void _setUpAnimation() {
+    if (_isBigToSmall) {
+      _rotationAnimation = Tween<double>(begin: 0, end: 0.25).animate(_curve);
+
+      _sizeAnimation = Tween<double>(
+              begin: IconSizes.loadingIconSize, end: IconSizes.iconSizeM)
+          .animate(_curve);
+    } else {
+      _rotationAnimation = Tween<double>(begin: 0.25, end: 0.5).animate(_curve);
+
+      _sizeAnimation = Tween<double>(
+              begin: IconSizes.iconSizeM, end: IconSizes.loadingIconSize)
+          .animate(_curve);
+    }
   }
 }
