@@ -6,6 +6,7 @@ import 'package:room_control/features/auth/domain/usecases/login.dart';
 import 'package:room_control/features/auth/domain/usecases/sign_up.dart';
 import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:room_control/features/auth/presentation/blocs/sign_up/sign_up_bloc.dart';
+import 'package:room_control/features/room_control/presentation/providers/room_provider.dart';
 
 final sl = GetIt.instance;
 
@@ -33,5 +34,12 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(),
+  );
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 1 ROOM CONTROL
+  // Provider
+  sl.registerFactory<RoomProvider>(
+    () => RoomProvider(),
   );
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/widgets/app_background.dart';
+import 'package:room_control/features/room_control/presentation/providers/room_provider.dart';
 import 'package:room_control/features/room_control/presentation/widgets/bottom_nav_bar.dart';
 import 'package:room_control/features/room_control/presentation/widgets/room/room_background_element.dart';
 import 'package:room_control/features/room_control/presentation/widgets/room/room_body.dart';
@@ -19,7 +21,6 @@ class _RoomPageState extends State<RoomPage>
     with SingleTickerProviderStateMixin {
   AnimationController animationController;
 
-  ///[isPageLoaded] is for growing lamp when page is loaded
   bool isPageLoaded = false;
 
   @override
@@ -30,11 +31,23 @@ class _RoomPageState extends State<RoomPage>
         AnimationController(duration: Duration(milliseconds: 500), vsync: this);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      //WAITING FOR PAGE TO COMPLETE ROUTE ANIMATION
       await Future.delayed(Duration(milliseconds: 700));
+
+      //SETTING BULB COLOR TO YELLOW (DEFAULT)
+      Provider.of<RoomProvider>(context, listen: false)
+          .changeBulbColor(AppColors.yellowBulb);
+
       setState(() {
         isPageLoaded = true;
       });
       animationController.forward();
+    });
+
+    //SETTING INTENSITY SLIDER ANIMATION
+    animationController.addListener(() {
+      Provider.of<RoomProvider>(context, listen: false)
+          .changeBulbIntensity(animationController.value);
     });
   }
 
@@ -66,7 +79,9 @@ class _RoomPageState extends State<RoomPage>
                   ],
                 ),
                 Expanded(
-                  child: RoomBody(animationController: animationController),
+                  child: RoomBody(
+                      animationController: animationController,
+                      isPageLoaded: isPageLoaded),
                 ),
               ],
             )

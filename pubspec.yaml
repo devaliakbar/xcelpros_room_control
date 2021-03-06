@@ -20,6 +20,7 @@ dependencies:
   get_it:
   dartz: ^0.9.2
   fluttertoast: ^7.1.8
+  provider:
 
 dev_dependencies:
   flutter_test:

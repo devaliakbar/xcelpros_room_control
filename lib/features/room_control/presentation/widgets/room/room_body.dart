@@ -10,7 +10,8 @@ import 'package:room_control/features/room_control/presentation/widgets/room/roo
 
 class RoomBody extends StatelessWidget {
   final AnimationController animationController;
-  RoomBody({@required this.animationController});
+  final bool isPageLoaded;
+  RoomBody({@required this.animationController, @required this.isPageLoaded});
 
   Widget build(BuildContext context) {
     return Stack(
@@ -35,7 +36,9 @@ class RoomBody extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      RoomBodyIntensity(),
+                      RoomBodyIntensity(
+                        isPageLoaded: isPageLoaded,
+                      ),
                       SizedBox(
                         height: SizeConfig.height(4),
                       ),

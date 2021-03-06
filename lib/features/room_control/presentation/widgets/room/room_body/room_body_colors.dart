@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
+import 'package:room_control/features/room_control/presentation/providers/room_provider.dart';
 
 class RoomBodyColors extends StatefulWidget {
   final AnimationController animationController;
@@ -73,23 +75,31 @@ class _RoomBodyColorsState extends State<RoomBodyColors> {
             flex: 5,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Container(
-                width: SizeConfig.width(8),
-                height: SizeConfig.width(8),
-                padding: EdgeInsets.all(SizeConfig.width(1.8)),
-                decoration: BoxDecoration(
-                  color:
-                      (index == colors.length) ? Colors.white : colors[index],
-                  shape: BoxShape.circle,
+              child: InkWell(
+                onTap: () {
+                  if (index != colors.length) {
+                    Provider.of<RoomProvider>(context, listen: false)
+                        .changeBulbColor(colors[index]);
+                  }
+                },
+                child: Container(
+                  width: SizeConfig.width(8),
+                  height: SizeConfig.width(8),
+                  padding: EdgeInsets.all(SizeConfig.width(1.8)),
+                  decoration: BoxDecoration(
+                    color:
+                        (index == colors.length) ? Colors.white : colors[index],
+                    shape: BoxShape.circle,
+                  ),
+                  child: (index == colors.length)
+                      ? FittedBox(
+                          child: Icon(
+                            Icons.add_sharp,
+                            color: AppColors.blue,
+                          ),
+                        )
+                      : null,
                 ),
-                child: (index == colors.length)
-                    ? FittedBox(
-                        child: Icon(
-                          Icons.add_sharp,
-                          color: AppColors.blue,
-                        ),
-                      )
-                    : null,
               ),
             ),
           );
