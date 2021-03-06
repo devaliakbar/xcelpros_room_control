@@ -66,7 +66,7 @@ class _RoomPageState extends State<RoomPage>
                   ],
                 ),
                 Expanded(
-                  child: RoomBody(),
+                  child: RoomBody(animationController: animationController),
                 ),
               ],
             )

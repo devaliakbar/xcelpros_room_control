@@ -9,6 +9,9 @@ import 'package:room_control/features/room_control/presentation/widgets/room/roo
 import 'package:room_control/features/room_control/presentation/widgets/room/room_body/room_body_intensity.dart';
 
 class RoomBody extends StatelessWidget {
+  final AnimationController animationController;
+  RoomBody({@required this.animationController});
+
   Widget build(BuildContext context) {
     return Stack(
       children: [
@@ -36,11 +39,11 @@ class RoomBody extends StatelessWidget {
                       SizedBox(
                         height: SizeConfig.height(4),
                       ),
-                      RoomBodyColors(),
+                      RoomBodyColors(animationController: animationController),
                       SizedBox(
                         height: SizeConfig.height(4),
                       ),
-                      RoomBodyScenes(),
+                      RoomBodyScenes(animationController: animationController),
                     ],
                   ),
                 ),

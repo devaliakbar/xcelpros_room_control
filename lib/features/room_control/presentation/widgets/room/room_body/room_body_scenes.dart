@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/res/icon/room_control_icons_icons.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
 
 class RoomBodyScenes extends StatelessWidget {
+  final AnimationController animationController;
+  RoomBodyScenes({@required this.animationController});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,10 +35,15 @@ class RoomBodyScenes extends StatelessWidget {
               width: SizeConfig.width(5),
             ),
             Expanded(
-              child: _buildScene(
-                  label: "Party",
-                  gradient1: AppColors.bulb4,
-                  gardient2: AppColors.bulb5),
+              child: CustomAnimation(
+                  animationController: animationController,
+                  customAnimationType: CustomAnimationType.leftToRight,
+                  opacityEffect: false,
+                  playAnimation: false,
+                  widget: _buildScene(
+                      label: "Party",
+                      gradient1: AppColors.bulb4,
+                      gardient2: AppColors.bulb5)),
             )
           ],
         ),
@@ -53,10 +62,16 @@ class RoomBodyScenes extends StatelessWidget {
               width: SizeConfig.width(5),
             ),
             Expanded(
-              child: _buildScene(
-                  label: "Fun",
-                  gradient1: AppColors.bulb2,
-                  gardient2: AppColors.bulb2Light),
+              child: CustomAnimation(
+                animationController: animationController,
+                customAnimationType: CustomAnimationType.leftToRight,
+                opacityEffect: false,
+                playAnimation: false,
+                widget: _buildScene(
+                    label: "Fun",
+                    gradient1: AppColors.bulb2,
+                    gardient2: AppColors.bulb2Light),
+              ),
             )
           ],
         ),
