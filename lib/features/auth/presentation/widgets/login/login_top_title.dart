@@ -14,6 +14,7 @@ class LoginTopTitle extends StatelessWidget {
         horizontal: SizeConfig.widthWithoutSafeArea(10),
       ),
       child: CustomAnimation(
+        animationDuration: Duration(milliseconds: 500),
         customAnimationType: CustomAnimationType.topToBottom,
         widget: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
@@ -57,9 +58,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           child: AppBackground(
             child: Stack(
               children: [
-                AuthMask(
-                  height: SizeConfig.heightWithoutSafeArea(40),
-                ),
+                CustomAnimation(
+                    animationDuration: Duration(milliseconds: 500),
+                    customAnimationType: CustomAnimationType.topToBottom,
+                    widget: AuthMask(
+                      height: SizeConfig.heightWithoutSafeArea(40),
+                    )),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(

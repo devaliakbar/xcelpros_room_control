@@ -40,85 +40,89 @@ class _LoginformState extends State<Loginform> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: SizeConfig.widthWithoutSafeArea(13),
-      ),
-      width: SizeConfig.widthWithoutSafeArea(100),
-      margin: EdgeInsets.only(
-        top: SizeConfig.heightWithoutSafeArea(4.5),
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(SizeConfig.widthWithoutSafeArea(10)),
-          topRight: Radius.circular(SizeConfig.widthWithoutSafeArea(10)),
+    return CustomAnimation(
+      animationDuration: Duration(milliseconds: 500),
+      customAnimationType: CustomAnimationType.bottomToTop,
+      widget: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: SizeConfig.widthWithoutSafeArea(13),
         ),
-      ),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            CustomAnimation(
-              customAnimationType: CustomAnimationType.topToBottom,
-              animationController: widget.animationController,
-              widget: AuthTextField(
-                label: AppString.username,
-                icon: RoomControlIcons.Username,
-                validator: onValidateUsername,
-                controller: _userNamecontroller,
-                onChanged: onTextChange,
-              ),
-            ),
-            CustomAnimation(
-              customAnimationType: CustomAnimationType.topToBottom,
-              animationController: widget.animationController,
-              widget: AuthTextField(
-                label: AppString.password,
-                validator: onValidatePassword,
-                icon: RoomControlIcons.Password,
-                controller: _passwordcontroller,
-                obsecure: true,
-                onChanged: onTextChange,
-              ),
-            ),
-            Hero(
-              tag: AnimationTag.authButton,
-              child: CustomButton(
+        width: SizeConfig.widthWithoutSafeArea(100),
+        margin: EdgeInsets.only(
+          top: SizeConfig.heightWithoutSafeArea(4.5),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(SizeConfig.widthWithoutSafeArea(10)),
+            topRight: Radius.circular(SizeConfig.widthWithoutSafeArea(10)),
+          ),
+        ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomAnimation(
+                customAnimationType: CustomAnimationType.topToBottom,
                 animationController: widget.animationController,
-                onClick: _isButtonDisable ? null : onSignIn,
-                title: AppString.signIn.toUpperCase(),
-                width: double.infinity,
+                widget: AuthTextField(
+                  label: AppString.username,
+                  icon: RoomControlIcons.Username,
+                  validator: onValidateUsername,
+                  controller: _userNamecontroller,
+                  onChanged: onTextChange,
+                ),
               ),
-            ),
-            CustomAnimation(
-              animationController: widget.animationController,
-              customAnimationType: CustomAnimationType.bottomToTop,
-              widget: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  NormalText(
-                    AppString.dontHaveAccount,
-                    color: AppColors.grey,
-                    size: FontSizes.fontSizeBSM,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  InkWell(
-                    onTap: widget.onSignUp,
-                    child: NormalText(
-                      AppString.signUp.toUpperCase(),
-                      boldText: true,
-                      color: AppColors.secondary,
+              CustomAnimation(
+                customAnimationType: CustomAnimationType.topToBottom,
+                animationController: widget.animationController,
+                widget: AuthTextField(
+                  label: AppString.password,
+                  validator: onValidatePassword,
+                  icon: RoomControlIcons.Password,
+                  controller: _passwordcontroller,
+                  obsecure: true,
+                  onChanged: onTextChange,
+                ),
+              ),
+              Hero(
+                tag: AnimationTag.authButton,
+                child: CustomButton(
+                  animationController: widget.animationController,
+                  onClick: _isButtonDisable ? null : onSignIn,
+                  title: AppString.signIn.toUpperCase(),
+                  width: double.infinity,
+                ),
+              ),
+              CustomAnimation(
+                animationController: widget.animationController,
+                customAnimationType: CustomAnimationType.bottomToTop,
+                widget: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    NormalText(
+                      AppString.dontHaveAccount,
+                      color: AppColors.grey,
                       size: FontSizes.fontSizeBSM,
                     ),
-                  )
-                ],
-              ),
-            )
-          ],
+                    SizedBox(
+                      width: 10,
+                    ),
+                    InkWell(
+                      onTap: widget.onSignUp,
+                      child: NormalText(
+                        AppString.signUp.toUpperCase(),
+                        boldText: true,
+                        color: AppColors.secondary,
+                        size: FontSizes.fontSizeBSM,
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
