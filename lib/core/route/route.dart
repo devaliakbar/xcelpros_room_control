@@ -3,8 +3,10 @@ import 'package:room_control/core/animation/page_transition_animation.dart';
 import 'package:room_control/features/auth/presentation/pages/auth_loading_page.dart';
 import 'package:room_control/features/auth/presentation/pages/login_page.dart';
 import 'package:room_control/features/auth/presentation/pages/sign_up_page.dart';
+import 'package:room_control/features/room_control/presentation/pages/bulb_page.dart';
 import 'package:room_control/features/room_control/presentation/pages/home_page.dart';
 import 'package:room_control/features/room_control/presentation/pages/room_page.dart';
+import 'package:room_control/features/room_control/presentation/pages/settings_page.dart';
 import 'package:room_control/features/welcome/presentation/pages/splash_screen.dart';
 
 class AppRouter {
@@ -48,6 +50,18 @@ class AppRouter {
             room: settings.arguments,
           ),
           duration: Duration(milliseconds: 700),
+          settings: settings,
+        );
+
+      case BulbPage.routeName:
+        return PageTransitionAnimation(
+          child: BulbPage(),
+          settings: settings,
+        );
+
+      case SettingsPage.routeName:
+        return PageTransitionAnimation(
+          child: SettingsPage(),
           settings: settings,
         );
 
