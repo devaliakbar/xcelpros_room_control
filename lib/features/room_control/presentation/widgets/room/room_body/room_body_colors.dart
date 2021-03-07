@@ -19,6 +19,9 @@ class _RoomBodyColorsState extends State<RoomBodyColors> {
   @override
   void initState() {
     super.initState();
+
+    ///HERE COLORS ANIMATION IS DONE BY CHNAGING EXPANDED FLEX ON ROW.[_animation] HELPS TO SMOOTH THE CHANGE OF FLEX
+    ///VALUE FROM 17 - 0;
     _animation =
         IntTween(begin: 17, end: 0).animate(widget.animationController);
     _animation.addListener(() {

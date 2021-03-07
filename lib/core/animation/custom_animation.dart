@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+///FOR BASIC ANIMATIONS
+
 enum CustomAnimationType { leftToRight, rightToLeft, topToBottom, bottomToTop }
 
 class CustomAnimation extends StatefulWidget {
   final Widget widget;
   final CustomAnimationType customAnimationType;
   final bool opacityEffect;
-  final bool elasticEffect;
   final Duration animationDuration;
   final AnimationController animationController;
   final bool playAnimation;
@@ -17,7 +18,6 @@ class CustomAnimation extends StatefulWidget {
     @required this.widget,
     this.customAnimationType,
     this.opacityEffect = true,
-    this.elasticEffect = false,
     this.animationDuration = const Duration(milliseconds: 200),
     this.animationController,
     this.playAnimation = true,
@@ -44,15 +44,12 @@ class _CustomAnimationState extends State<CustomAnimation>
     if (widget.animationController != null) {
       _controller = widget.animationController;
     } else {
+      ///IF THERE IS NO CONTYROLLER PASSED, SET UP CONTROLLER HERE
       _controller =
           AnimationController(duration: widget.animationDuration, vsync: this);
     }
 
-    Animation _curve = CurvedAnimation(
-        parent: _controller,
-        curve: widget.elasticEffect ? Curves.elasticInOut : Curves.linear);
-
-    Animation _opacityCurve =
+    Animation _curve =
         CurvedAnimation(parent: _controller, curve: Curves.linear);
 
     _controller.addStatusListener((status) {
@@ -73,6 +70,8 @@ class _CustomAnimationState extends State<CustomAnimation>
     }
 
     if (widget.showWidgetWithoutAnimation) {
+      ///IF WE DON'T NEED ANIMATION DURING FIRST TIME,AND ONLY NEED REVERSE ANIMATION, FIRST WE PERFORM
+      ///ANIMATION WITHOUT ANY EFFECT, ONCE THAT COMPLETE ASSIGN REAL ANIMATION BEHAVIOUR TO THE CONTROLLER
       _offset = Tween(begin: Offset(0, 0), end: Offset(0, 0)).animate(_curve);
 
       _controller.forward().whenComplete(() {
@@ -82,8 +81,7 @@ class _CustomAnimationState extends State<CustomAnimation>
       _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);
 
       if (widget.opacityEffect) {
-        _opacityAnimation =
-            Tween<double>(begin: 0, end: 1).animate(_opacityCurve);
+        _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_curve);
       }
     }
 

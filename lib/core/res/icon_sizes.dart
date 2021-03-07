@@ -5,6 +5,7 @@ class IconSizes {
     return SizeConfig.height(2.4);
   }
 
+  //BETWEEN XS AND S
   static double get iconSizeBXSS {
     return SizeConfig.height(2.6);
   }
@@ -19,10 +20,6 @@ class IconSizes {
 
   static double get iconSizeL {
     return SizeConfig.height(3.6);
-  }
-
-  static double get iconSizeXL {
-    return SizeConfig.height(4);
   }
 
   static double get loadingIconSize {

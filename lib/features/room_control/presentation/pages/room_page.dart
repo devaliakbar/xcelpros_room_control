@@ -22,8 +22,10 @@ class RoomPage extends StatefulWidget {
 
 class _RoomPageState extends State<RoomPage>
     with SingleTickerProviderStateMixin {
+  ///[animationController] is used for horizontal lights, colors, scenes and noOfLights animation
   AnimationController animationController;
 
+  ///[isPageLoaded] is used for growing lamp, showing bulb high intensity onLoad, keep slider value 0 onLoad etc.
   bool isPageLoaded = false;
 
   @override
@@ -52,6 +54,12 @@ class _RoomPageState extends State<RoomPage>
       Provider.of<RoomProvider>(context, listen: false)
           .changeBulbIntensity(animationController.value);
     });
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   @override

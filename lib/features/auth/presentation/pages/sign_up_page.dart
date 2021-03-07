@@ -22,9 +22,11 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   /// [_animationController] is for button, 3 textfields, terms and condiition and button
   AnimationController animationController;
 
+  /// [bodyAnimationController] is for Smooting the growing animation of SignUp Form  During Navigate to Loading Page
   AnimationController bodyAnimationController;
 
-  /// [_expanded] is for smooothing form conatiner
+  /// [_expanded] is for smooothing form conatiner. Due to the height difference of Login Form and Sign Up Form , Form Container
+  /// Growing effect is not smooth during navigate between Login and Sign Up Pages. So here grow and shrink container manually.
   bool _expanded = false;
 
   @override
@@ -48,6 +50,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   @override
   void dispose() {
     animationController.dispose();
+    bodyAnimationController.dispose();
     super.dispose();
   }
 

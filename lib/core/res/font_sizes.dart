@@ -1,6 +1,7 @@
 part of 'app_resources.dart';
 
 class FontSizes {
+  //BETWEEN XS AND S
   static double get fontSizeBXSS {
     return SizeConfig.height(1.6);
   }
@@ -9,6 +10,7 @@ class FontSizes {
     return SizeConfig.height(1.8);
   }
 
+  //BETWEEN S AND M
   static double get fontSizeBSM {
     return SizeConfig.height(2);
   }
@@ -17,6 +19,7 @@ class FontSizes {
     return SizeConfig.height(2.2);
   }
 
+  //BETWEEN M AND L
   static double get fontSizeBML {
     return SizeConfig.height(2.4);
   }

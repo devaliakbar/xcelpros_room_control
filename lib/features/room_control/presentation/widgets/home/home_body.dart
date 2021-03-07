@@ -19,7 +19,13 @@ class _HomeBodyState extends State<HomeBody> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     animationController =
-        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   final List<Room> rooms = [

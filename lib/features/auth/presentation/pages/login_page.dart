@@ -19,9 +19,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
-  /// [_animationController] is for Username and PasswordTextField, button and signupText
+  /// [animationController] is for Username and PasswordTextField, button and signupText
   AnimationController animationController;
 
+  /// [bodyAnimationController] is for Smooting the growing animation of Login Form  During Navigate to Loading Page
   AnimationController bodyAnimationController;
 
   @override
@@ -38,6 +39,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   @override
   void dispose() {
     animationController.dispose();
+    bodyAnimationController.dispose();
     super.dispose();
   }
 

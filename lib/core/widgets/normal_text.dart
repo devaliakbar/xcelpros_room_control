@@ -7,16 +7,14 @@ class NormalText extends StatelessWidget {
   final bool boldText;
   final double size;
   final bool truncate;
-  final TextAlign textAlign;
-  final int maxLine;
 
-  NormalText(this.text,
-      {this.color,
-      this.boldText = false,
-      this.size,
-      this.truncate = false,
-      this.textAlign = TextAlign.start,
-      this.maxLine = 1});
+  NormalText(
+    this.text, {
+    this.color,
+    this.boldText = false,
+    this.size,
+    this.truncate = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +26,10 @@ class NormalText extends StatelessWidget {
     return Text(
       text,
       overflow: overflowStyle,
-      textAlign: textAlign,
       style: TextStyle(
           color: color == null ? AppColors.black : color,
           fontSize: size == null ? FontSizes.fontSizeM : size,
           fontWeight: boldText ? FontWeight.bold : FontWeight.normal),
-      maxLines: truncate ? maxLine : null,
     );
   }
 }

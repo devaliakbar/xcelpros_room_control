@@ -53,8 +53,9 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
 
               Navigator.pop(context);
             } else if (state is SignUpSuccessState) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  HomePage.routeName, (Route<dynamic> route) => false);
+              _exitAnimation.reverse().whenComplete(() => Navigator.of(context)
+                  .pushNamedAndRemoveUntil(
+                      HomePage.routeName, (Route<dynamic> route) => false));
             }
           },
         ),

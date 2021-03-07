@@ -19,6 +19,7 @@ class HomeHeader extends StatelessWidget {
             boldText: true,
             size: FontSizes.fontSizeXXL,
           ),
+          // RECIEVED IMAGE QUALITY IS LOW.
           Image.asset(
             AppImages.user,
             height: SizeConfig.height(10),
