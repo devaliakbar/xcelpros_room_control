@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return BlocListener<SignUpBloc, SignUpState>(
       listener: (context, state) async {
-        print("Login Screen State Changed");
+        print("Sign Up Screen State Changed");
 
         if (state is SignUpLoadingState) {
           bodyAnimationController.reverse();
