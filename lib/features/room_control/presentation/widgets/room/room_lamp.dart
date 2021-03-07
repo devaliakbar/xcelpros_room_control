@@ -6,7 +6,12 @@ import 'package:room_control/features/room_control/presentation/providers/room_p
 
 class RoomLamp extends StatelessWidget {
   final isPageLoaded;
-  RoomLamp({@required this.isPageLoaded});
+
+  ///DURING SLIDER ANIMATION, THE INTENSITY_VALUE CHANGE FROM 0 TO 1, SO THE INTENSITY OF LIGHT ALSO CHANGE.
+  ///BY USING [animationController] WE CAN CHECK WEATHER ANIMATION IS ANIMATING,
+  ///IF YES, SHOW HIGH INTENSITY LIGHT INSTEAD OF INTENSITY_VALUE BASED LIGHT INTENSITY
+  final AnimationController animationController;
+  RoomLamp({@required this.isPageLoaded, @required this.animationController});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +31,13 @@ class RoomLamp extends StatelessWidget {
                     builder: (context, roomController, child) {
                   Color bulbColor = AppColors.yellowBulb;
 
-                  if (isPageLoaded) {
-                    bulbColor = roomController.bulbColor
-                        .withOpacity(roomController.bulbIntensity);
-                  }
-
-                  if (isPageLoaded && (roomController.bulbIntensity < 0.15)) {
-                    bulbColor = Colors.black.withOpacity(0.5);
+                  if (isPageLoaded && !animationController.isAnimating) {
+                    if (roomController.bulbIntensity < 0.15) {
+                      bulbColor = Colors.black.withOpacity(0.5);
+                    } else {
+                      bulbColor = roomController.bulbColor
+                          .withOpacity(roomController.bulbIntensity);
+                    }
                   }
 
                   return Container(

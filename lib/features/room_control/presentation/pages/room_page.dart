@@ -80,7 +80,9 @@ class _RoomPageState extends State<RoomPage>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RoomTitle(animationController: animationController),
-                        RoomLamp(isPageLoaded: isPageLoaded),
+                        RoomLamp(
+                            isPageLoaded: isPageLoaded,
+                            animationController: animationController),
                       ],
                     ),
                     RoomLights(
