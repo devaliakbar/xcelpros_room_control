@@ -45,8 +45,6 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) async {
         print("Login Screen State Changed");
