@@ -163,10 +163,6 @@ class _LoginformState extends State<Loginform> {
       return AppString.fieldEmpty;
     }
 
-    if (value.length < 8) {
-      return AppString.passwordLength;
-    }
-
     return null;
   }
 

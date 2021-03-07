@@ -61,8 +61,7 @@ class RoomBody extends StatelessWidget {
           child: InkWell(
             onTap: () {
               if (isPageLoaded) {
-                Provider.of<RoomProvider>(context, listen: false)
-                    .changeBulbIntensity(0);
+                Provider.of<RoomProvider>(context, listen: false).togglePower();
               }
             },
             child: Card(

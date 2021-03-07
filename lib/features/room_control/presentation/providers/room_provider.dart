@@ -16,4 +16,14 @@ class RoomProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  void togglePower() {
+    if (bulbIntensity > 0) {
+      bulbIntensity = 0;
+    } else {
+      bulbIntensity = 1;
+    }
+
+    notifyListeners();
+  }
 }
