@@ -117,6 +117,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   }
 
   Future<void> _showLoading() async {
+    await Future.delayed(Duration(milliseconds: 1));
     bodyAnimationController.reverse();
     await Navigator.pushNamed(context, AuthLoadingPage.routeName);
     bodyAnimationController.forward();
