@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/show_toast.dart';
 import 'package:room_control/core/services/size_config.dart';
-import 'package:room_control/features/auth/presentation/blocs/login/login_bloc.dart';
-import 'package:room_control/features/auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:room_control/core/widgets/app_background.dart';
+import 'package:room_control/features/auth/presentation/providers/login/login_provider.dart';
+import 'package:room_control/features/auth/presentation/providers/sign_up/sign_up_provider.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_loading/auth_loading_animation.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
 import 'package:room_control/features/room_control/presentation/pages/home_page.dart';
@@ -40,44 +40,35 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<SignUpBloc, SignUpState>(
-          listener: (context, state) async {
-            print("Auth Loading Screen State Changed (For SignUp)");
+    return Consumer2<SignUpProvider, LoginProvider>(
+        builder: (context, signUpProvider, loginProvider, child) {
+      //CHECKING FOR SIGNUP
+      SignUpState signUpState = signUpProvider.signUpState;
+      if (signUpState is SignUpErrorState) {
+        authFailed(signUpState.message).then((value) => signUpProvider.reset());
+      } else if (signUpState is SignUpSuccessState) {
+        _exitAnimation.reverse().whenComplete(() => Navigator.of(context)
+            .pushNamedAndRemoveUntil(
+                HomePage.routeName, (Route<dynamic> route) => false)
+            .then(
+              (value) => signUpProvider.reset(),
+            ));
+      }
 
-            if (state is SignUpErrorState) {
-              ShowToast(state.message);
+      //CHECKING FOR LOGIN
+      LoginState loginState = loginProvider.loginState;
+      if (loginState is LoginErrorState) {
+        authFailed(loginState.message).then((value) => loginProvider.reset());
+      } else if (loginState is LoginSuccessState) {
+        _exitAnimation.reverse().whenComplete(() => Navigator.of(context)
+            .pushNamedAndRemoveUntil(
+                HomePage.routeName, (Route<dynamic> route) => false)
+            .then(
+              (value) => loginProvider.reset(),
+            ));
+      }
 
-              await Future.delayed(Duration(seconds: 2));
-
-              Navigator.pop(context);
-            } else if (state is SignUpSuccessState) {
-              _exitAnimation.reverse().whenComplete(() => Navigator.of(context)
-                  .pushNamedAndRemoveUntil(
-                      HomePage.routeName, (Route<dynamic> route) => false));
-            }
-          },
-        ),
-        BlocListener<LoginBloc, LoginState>(
-          listener: (context, state) async {
-            print("Auth Loading Screen State Changed (For Login)");
-
-            if (state is LoginErrorState) {
-              ShowToast(state.message);
-
-              await Future.delayed(Duration(seconds: 2));
-
-              Navigator.pop(context);
-            } else if (state is LoginSuccessState) {
-              _exitAnimation.reverse().whenComplete(() => Navigator.of(context)
-                  .pushNamedAndRemoveUntil(
-                      HomePage.routeName, (Route<dynamic> route) => false));
-            }
-          },
-        ),
-      ],
-      child: WillPopScope(
+      return WillPopScope(
         onWillPop: () async {
           return false;
         },
@@ -102,7 +93,13 @@ class _AuthLoadingPageState extends State<AuthLoadingPage>
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
+  }
+
+  Future<void> authFailed(String message) async {
+    ShowToast(message);
+    await Future.delayed(Duration(seconds: 2));
+    Navigator.pop(context);
   }
 }

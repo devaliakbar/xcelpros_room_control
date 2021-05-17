@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
 import 'package:room_control/core/services/size_config.dart';
-import 'package:room_control/features/auth/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:room_control/features/auth/presentation/pages/auth_loading_page.dart';
 import 'package:room_control/core/widgets/app_background.dart';
+import 'package:room_control/features/auth/presentation/providers/sign_up/sign_up_provider.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_mask.dart';
 import 'package:room_control/features/auth/presentation/widgets/sign_up/sign_up_back_icon.dart';
 import 'package:room_control/features/auth/presentation/widgets/sign_up/sign_up_form.dart';
@@ -56,17 +56,12 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignUpBloc, SignUpState>(
-      listener: (context, state) async {
-        print("Sign Up Screen State Changed");
+    return Consumer<SignUpProvider>(builder: (context, loginProvider, child) {
+      if (loginProvider.signUpState is SignUpLoadingState) {
+        _showLoading();
+      }
 
-        if (state is SignUpLoadingState) {
-          bodyAnimationController.reverse();
-          await Navigator.pushNamed(context, AuthLoadingPage.routeName);
-          bodyAnimationController.forward();
-        }
-      },
-      child: WillPopScope(
+      return WillPopScope(
         onWillPop: _onWillPop,
         child: Scaffold(
           backgroundColor: AppColors.primary,
@@ -117,8 +112,14 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
+  }
+
+  Future<void> _showLoading() async {
+    bodyAnimationController.reverse();
+    await Navigator.pushNamed(context, AuthLoadingPage.routeName);
+    bodyAnimationController.forward();
   }
 
   Future<bool> _onWillPop() async {

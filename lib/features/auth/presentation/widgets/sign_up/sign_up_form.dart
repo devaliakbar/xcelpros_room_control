@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:room_control/core/animation/animation_tag.dart';
 import 'package:room_control/core/animation/custom_animation.dart';
 import 'package:room_control/core/res/app_resources.dart';
@@ -8,7 +8,7 @@ import 'package:room_control/core/services/size_config.dart';
 import 'package:room_control/core/utils/utils.dart';
 import 'package:room_control/core/widgets/custom_button.dart';
 import 'package:room_control/core/widgets/normal_text.dart';
-import 'package:room_control/features/auth/presentation/blocs/sign_up/sign_up_bloc.dart';
+import 'package:room_control/features/auth/presentation/providers/sign_up/sign_up_provider.dart';
 import 'package:room_control/features/auth/presentation/widgets/auth_textfield.dart';
 
 class SignUpform extends StatefulWidget {
@@ -232,11 +232,10 @@ class _SignUpformState extends State<SignUpform> {
     }
     _formKey.currentState.save();
 
-    BlocProvider.of<SignUpBloc>(context).add(
-      SignUpUserEvent(
-          username: _userNamecontroller.text.trim(),
-          email: _emailcontroller.text.trim(),
-          password: _passwordcontroller.text.trim()),
+    Provider.of<SignUpProvider>(context, listen: false).signUp(
+      username: _userNamecontroller.text.trim(),
+      email: _emailcontroller.text.trim(),
+      password: _passwordcontroller.text.trim(),
     );
   }
 }
